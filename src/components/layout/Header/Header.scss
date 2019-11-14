@@ -1,7 +1,8 @@
 $medly-green: #00D2B3;
+$medly-blue: #6ba3e5;
 
 .header {
-    height: 100px;
+    height: 50px;
     background-color: $medly-green;
     display: flex;
     flex-direction: row;
@@ -17,9 +18,15 @@ $medly-green: #00D2B3;
 
     &-right {
         flex-basis: 70%;
+        color: white;
+        font-size: 20px;
+        margin-right: 20px;
+        text-align: right;
+        margin-top: -5px;
     }
 
     &-logo {
         margin: 0 auto;
+        width: 30%;
     }
 }

@@ -1,5 +1,9 @@
-## To Run
+#### Ocelot
 
-1. Clone Project
-2. npm install
-3. npm start
+## Install
+
+Clone Project
+- `npm install`
+
+## Run
+- `npm start`

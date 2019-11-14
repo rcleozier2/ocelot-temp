@@ -4,7 +4,7 @@ $medly-green: #00d2b3;
 $medly-green-dark: #3cdbc0;
 $medly-navy: #012040;
 $medly-blue: #6ba3e5;
-$background-color: #fff;
+$background-color: #fafafa;
 
 html {
   font-family: "Mandali";
@@ -32,5 +32,22 @@ body {
     &-chart {
       flex-basis: 45%;
     }
+  }
+}
+
+.data-container {
+  border-radius: 5px;
+  background-color: #fff;
+  flex-basis: 93%;
+  height: auto;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &-half {
+    flex-basis: 50%;
+    margin-right: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
   }
 }

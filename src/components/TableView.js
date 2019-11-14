@@ -44,32 +44,32 @@ const TableView = props => {
       <Row>
         <Column header="Zone" rowSpan={4} style={{ width: "80px" }} />
         <Column
-          header="4AM - 9AM"
+          header="4AM - 9AM (Too Early)"
           colSpan={4}
           style={{ "background-color": "#FFCA58" }}
         />
         <Column
           header="9AM-Noon"
           colSpan={4}
-          style={{ "background-color": "#008fba" }}
+          style={{ "background-color": "#6ba3e5" }}
         />
         <Column
           header="Noon-3PM"
           colSpan={4}
-          style={{ "background-color": "#008fba" }}
+          style={{ "background-color": "#6ba3e5" }}
         />
         <Column
           header="3PM-6PM"
           colSpan={4}
-          style={{ "background-color": "#008fba" }}
+          style={{ "background-color": "#6ba3e5" }}
         />
         <Column
           header="6PM-9PM"
           colSpan={4}
-          style={{ "background-color": "#008fba" }}
+          style={{ "background-color": "#6ba3e5" }}
         />
         <Column
-          header="9PM-4AM"
+          header="9PM-4AM (Too Late)"
           colSpan={4}
           style={{ "background-color": "#FFCA58" }}
         />

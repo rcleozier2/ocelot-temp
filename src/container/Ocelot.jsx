@@ -57,35 +57,44 @@ class Ocelot extends Component {
   render() {
     return (
       <>
-        {/* <Header /> */}
+        <Header />
         <div className="page-container">
-          <h2> Historial data for {this.state.displayDate} </h2>
-          <Calendar
-            dateFormat="dd/mm/yy"
-            value={this.state.date}
-            inline={true}
-            onChange={e => this.handleDateChange(e.value)}
-          ></Calendar>
+          <div className="data-container">
+            Select a date &nbsp;
+            <Calendar
+              dateFormat="mm/dd/yy"
+              value={this.state.date}
+              onChange={e => this.handleDateChange(e.value)}
+            ></Calendar>
+            &nbsp;
+            <span> Historical data for {this.state.displayDate} </span>
+          </div>
           {this.state.zones != null ? (
             <>
               <div className="page-container__data">
+                <div className="page-container__data-table data-container">
+                  <TableView
+                    zones={this.state.zones}
+                    drivers={this.state.drivers}
+                  />
+                </div>
                 <div className="page-container__data-charts">
-                  <div className="page-container__data-chart">
-                    {/* <BarChartView zones={this.state.zones} drivers={this.state.drivers} /> */}
+                  <div className="page-container__data-chart data-container-half">
+                    {/* <BarChartView
+                      zones={this.state.zones}
+                      drivers={this.state.drivers}
+                    /> */}
                   </div>
-                  <div className="page-container__data-chart">
-                    {/* <PieChartView zones={this.state.zones} drivers={this.state.drivers} /> */}
+                  <div className="page-container__data-chart data-container-half">
+                    {/* <PieChartView
+                      zones={this.state.zones}
+                      drivers={this.state.drivers}
+                    /> */}
                   </div>
                 </div>
                 <br />
                 <br />
-                <br />
-                <br />
-                <div className="page-container__data-table">
-                  {/* <TableView zones={this.state.zones} drivers={this.state.drivers} /> */}
-                </div>
               </div>
-              <Footer />
             </>
           ) : (
             <ProgressBar mode="indeterminate" />
