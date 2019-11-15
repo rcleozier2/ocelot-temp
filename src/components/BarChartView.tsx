@@ -1,12 +1,25 @@
 import React from 'react';
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
 
-const BarChartView = (props) => {
+interface IProps {
+    zones: any;
+    drivers: null | Array<string>
+};
+
+interface ZoneObjLayout {
+    name: string;
+    Completed: number;
+    Ontime: number;
+    Late: number;
+    Failed: number;
+};
+
+const BarChartView = (props: IProps) => {
     const zones = props.zones;
 
-    const data = [{
+    const data: Array<any> = [{
         name: 'Zoneless', 
         Completed: zones.zoneless.total.completed, 
         Ontime: zones.zoneless.total.ontime, 
@@ -16,8 +29,8 @@ const BarChartView = (props) => {
    
     // Build Zones
     for (let i = 1; i <= 6; i++ ) {
-        let zone = `zone${i}`;
-        let obj = {
+        let zone: string = `zone${i}`;
+        let obj: ZoneObjLayout = {
             name: `Zone ${i}`,
             Completed: zones[zone].total.completed, 
             Ontime: zones[zone].total.ontime, 

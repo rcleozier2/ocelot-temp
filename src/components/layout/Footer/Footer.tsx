@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.scss";
 
-const Footer = props => {
+const Footer = () => {
   return <div className="footer"> 2019 Medly Pharmacy </div>;
 };
 

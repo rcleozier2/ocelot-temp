@@ -4,9 +4,18 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 
-const TableView = props => {
-  const zones = props.zones;
-  const zonenames = [
+interface ZoneObjLayout {
+  [key: string]: string;
+};
+
+interface IProps {
+  zones: any;
+  drivers: null | Array<string>
+};
+
+const TableView = (props: IProps) => {
+  const zones: Array<string> = props.zones;
+  const zonenames: Array<string> = [
     "zone1",
     "zone2",
     "zone3",
@@ -15,7 +24,7 @@ const TableView = props => {
     "zone6",
     "zoneless"
   ];
-  const timeslots = [
+  const timeslots: Array<string> = [
     "slot4amTo9am",
     "slot9amTo12pm",
     "slot12pmTo3pm",
@@ -23,13 +32,14 @@ const TableView = props => {
     "slot6pmTo9pm",
     "slot9pmTo4am"
   ];
-  const tableData = [];
+  const tableData: Array<any> = [];
 
   // Build Row Data
   zonenames.forEach(zonename => {
-    let obj = {
-      name: zonename
+    let obj: ZoneObjLayout = {
+      name : zonename
     };
+    
     timeslots.forEach(slot => {
       obj[slot + "_r"] = zones[zonename][slot].completed;
       obj[slot + "_ua"] = zones[zonename][slot].ontime;

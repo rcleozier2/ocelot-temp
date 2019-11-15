@@ -15,15 +15,22 @@ import endpoints from "../config/endpoints";
 import "./Ocelot.scss";
 import "./Reset.scss";
 
+interface IState {
+  zones: null | Array<any>;
+  drivers: null | Array<any>;
+  displayDate: string;
+  date: Date
+}
+
 class Ocelot extends Component {
-  state = {
+  state: IState = {
     zones: null,
     drivers: null,
     displayDate: "10/29/2019",
     date: new Date()
   };
 
-  async fetchHistoricalData(queryParam) {
+  async fetchHistoricalData(queryParam: string) {
     await axios
       .get(`${endpoints.apiUrl}${queryParam}`)
       .then(res => {
@@ -36,11 +43,11 @@ class Ocelot extends Component {
   }
 
   async componentWillMount() {
-    const queryParam = "?year=2019&month=10&day=29";
+    const queryParam: string = "?year=2019&month=10&day=29";
     await this.fetchHistoricalData(queryParam);
   }
 
-  handleDateChange = date => {
+  handleDateChange = (date: any) => {
     this.setState({
       zones: null,
       date: date,

@@ -1,17 +1,27 @@
 import React from 'react';
 import {Chart} from 'primereact/chart';
 
-const PieChartView = (props) => {
+interface OptionsObjLayout {
+    height: string;
+    width: string;
+}
+
+interface IProps {
+    zones: any;
+    drivers: null | Array<string>
+}
+
+const PieChartView = (props: IProps)=> {
     const zones = props.zones;
-    const pieData = [zones.zoneless.total.failed];
+    const pieData: Array<number> = [zones.zoneless.total.failed];
    
     // Build Zones
     for (let i = 1; i <= 6; i++ ) {
-        let zone = `zone${i}`;
+        let zone: string = `zone${i}`;
         pieData.push(zones[zone].total.failed);
     };
 
-    const options = {
+    const options: OptionsObjLayout = {
         height: '200',
         width: '200',
     };
@@ -20,7 +30,7 @@ const PieChartView = (props) => {
         labels: ['Zoneless','Zone 1','Zone 2', 'Zone 3', 'Zone 4', 'Zone 5', 'Zone 6'],
         datasets: [
             {
-                data: pieData,
+                data : pieData,
                 backgroundColor: [
                     "#FFAA15",
                     "#555555",

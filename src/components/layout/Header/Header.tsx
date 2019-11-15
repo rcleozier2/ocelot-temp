@@ -3,7 +3,7 @@ import logo from "../../../assets/medly-logo.png";
 
 import "./Header.scss";
 
-const Header = props => {
+const Header = () => {
   return (
         <div className="header">
         <div className="header-left">
