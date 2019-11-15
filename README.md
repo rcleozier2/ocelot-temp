@@ -1,9 +1,8 @@
-#### Ocelot
+## Ocelot
 
-## Install
-
-Clone Project
+##### Clone and Install
+- `git clone`
 - `npm install`
 
-## Run
+##### Run
 - `npm start`

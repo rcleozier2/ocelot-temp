@@ -80,16 +80,16 @@ class Ocelot extends Component {
                 </div>
                 <div className="page-container__data-charts">
                   <div className="page-container__data-chart data-container-half">
-                    {/* <BarChartView
+                    <BarChartView
                       zones={this.state.zones}
                       drivers={this.state.drivers}
-                    /> */}
+                    />
                   </div>
                   <div className="page-container__data-chart data-container-half">
-                    {/* <PieChartView
+                    <PieChartView
                       zones={this.state.zones}
                       drivers={this.state.drivers}
-                    /> */}
+                    />
                   </div>
                 </div>
                 <br />
@@ -100,6 +100,7 @@ class Ocelot extends Component {
             <ProgressBar mode="indeterminate" />
           )}
         </div>
+        <Footer />
       </>
     );
   }

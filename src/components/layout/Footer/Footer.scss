@@ -2,10 +2,15 @@ $medly-navy: #012040;
 
 .footer {
   height: 70px;
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: $medly-navy;
   margin-top: 100px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: 18px;
 }
