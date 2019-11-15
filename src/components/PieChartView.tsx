@@ -1,17 +1,17 @@
 import React from 'react';
 import {Chart} from 'primereact/chart';
 
-interface OptionsObjLayout {
+interface Options {
     height: string;
     width: string;
 }
 
-interface IProps {
+interface Props {
     zones: any;
     drivers: null | Array<string>
 }
 
-const PieChartView = (props: IProps)=> {
+const PieChartView = (props: Props)=> {
     const zones = props.zones;
     const pieData: Array<number> = [zones.zoneless.total.failed];
    
@@ -21,7 +21,7 @@ const PieChartView = (props: IProps)=> {
         pieData.push(zones[zone].total.failed);
     };
 
-    const options: OptionsObjLayout = {
+    const options: Options = {
         height: '200',
         width: '200',
     };

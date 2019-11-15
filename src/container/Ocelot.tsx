@@ -15,7 +15,7 @@ import endpoints from "../config/endpoints";
 import "./Ocelot.scss";
 import "./Reset.scss";
 
-interface IState {
+interface State {
   zones: null | Array<any>;
   drivers: null | Array<any>;
   displayDate: string;
@@ -23,7 +23,8 @@ interface IState {
 }
 
 class Ocelot extends Component {
-  state: IState = {
+  
+  state: State = {
     zones: null,
     drivers: null,
     displayDate: "10/29/2019",

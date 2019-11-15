@@ -4,16 +4,16 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 
-interface ZoneObjLayout {
+interface Zones {
   [key: string]: string;
-};
+}
 
-interface IProps {
-  zones: any;
+interface Props {
+  zones: Array<string>;
   drivers: null | Array<string>
-};
+}
 
-const TableView = (props: IProps) => {
+const TableView = (props: Props) => {
   const zones: Array<string> = props.zones;
   const zonenames: Array<string> = [
     "zone1",
@@ -32,11 +32,11 @@ const TableView = (props: IProps) => {
     "slot6pmTo9pm",
     "slot9pmTo4am"
   ];
-  const tableData: Array<any> = [];
+  const tableData: Array<object> = [];
 
   // Build Row Data
   zonenames.forEach(zonename => {
-    let obj: ZoneObjLayout = {
+    let obj: Zones = {
       name : zonename
     };
     

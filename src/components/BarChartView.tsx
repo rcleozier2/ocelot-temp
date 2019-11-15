@@ -3,20 +3,20 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
 
-interface IProps {
+interface Props {
     zones: any;
     drivers: null | Array<string>
-};
+}
 
-interface ZoneObjLayout {
+interface Zones {
     name: string;
     Completed: number;
     Ontime: number;
     Late: number;
     Failed: number;
-};
+}
 
-const BarChartView = (props: IProps) => {
+const BarChartView = (props: Props) => {
     const zones = props.zones;
 
     const data: Array<any> = [{
@@ -30,7 +30,7 @@ const BarChartView = (props: IProps) => {
     // Build Zones
     for (let i = 1; i <= 6; i++ ) {
         let zone: string = `zone${i}`;
-        let obj: ZoneObjLayout = {
+        let obj: Zones = {
             name: `Zone ${i}`,
             Completed: zones[zone].total.completed, 
             Ontime: zones[zone].total.ontime, 
