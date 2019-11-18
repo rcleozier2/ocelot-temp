@@ -6,16 +6,16 @@ import { Calendar } from "primereact/calendar";
 
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
-import TableView from "../components/TableView";
-import DriverTableView from "../components/DriverTableView";
-import BarChartView from "../components/BarChartView";
-import PieChartView from "../components/PieChartView";
+import TableView from "../components/tables/TableView";
+import DriverTableView from "../components/tables/DriverTableView";
+import BarChartView from "../components/charts/BarChartView";
+import PieChartView from "../components/charts/PieChartView";
 
 import endpoints from "../config/endpoints";
 import normalizeResponse from "../helper/normalize";
 
-import "./Ocelot.scss";
-import "./Reset.scss";
+import "./scss/Ocelot.scss";
+import "./scss/Reset.scss";
 
 interface State {
   tasks: any;
@@ -36,9 +36,16 @@ class Ocelot extends Component {
     queryParams: "?year=2019&month=10&day=29"
   };
 
+  async fetchUserData() {
+    await axios
+      .get(`${endpoints.usersApiUrl}`)
+      .then(res => {})
+      .catch(err => console.log(`Error: ${err}`));
+  }
+
   async fetchHistoricalData(queryParams: string) {
     await axios
-      .get(`${endpoints.apiUrl}${this.state.state}${queryParams}`)
+      .get(`${endpoints.historicalApiUrl}${this.state.state}${queryParams}`)
       .then(res => {
         let response = normalizeResponse(res.data);
 
@@ -108,7 +115,7 @@ class Ocelot extends Component {
           {this.state.tasks != null ? (
             <>
               <div className="page-container__data">
-              <div className="page-container__data-table data-container">
+                <div className="page-container__data-table data-container">
                   <DriverTableView
                     tasks={this.state.tasks}
                     drivers={this.state.drivers}

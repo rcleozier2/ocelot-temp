@@ -1,9 +1,10 @@
 $medly-green: #00D2B3;
 $medly-blue: #6ba3e5;
+$medly-dark-blue: #012040;
 
 .header {
     height: 50px;
-    background-color: $medly-green;
+    background-color: $medly-dark-blue;
     display: flex;
     flex-direction: row;
     align-items: center;

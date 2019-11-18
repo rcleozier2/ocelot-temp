@@ -1,9 +1,11 @@
 interface Endpoints {
-  apiUrl: string;
+  usersApiUrl: string;
+  historicalApiUrl: string;
 }
 
 const endpoints: Endpoints = {
-  apiUrl: "https://tech.medly.link/v1/onfleet/capacity/getHistorical/"
+  usersApiUrl: "https://www.medly.link/v1/onfleet/users",
+  historicalApiUrl: "https://tech.medly.link/v1/onfleet/capacity/getHistorical/"
 };
 
 export default endpoints;
