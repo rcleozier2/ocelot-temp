@@ -11,30 +11,33 @@ import BarChartView from "../components/BarChartView";
 import PieChartView from "../components/PieChartView";
 
 import endpoints from "../config/endpoints";
-import normalizeResponse from '../helper/normalize';
+import normalizeResponse from "../helper/normalize";
 
 import "./Ocelot.scss";
 import "./Reset.scss";
 
 interface State {
-  tasks: null | Array<any>;
+  tasks: any;
   drivers: null | Array<any>;
   displayDate: string;
   date: Date;
+  state: string;
+  queryParams: string;
 }
 
 class Ocelot extends Component {
-
   state: State = {
     tasks: null,
     drivers: null,
     displayDate: "10/29/2019",
-    date: new Date()
+    date: new Date(),
+    state: "newyork",
+    queryParams: "?year=2019&month=10&day=29"
   };
 
-  async fetchHistoricalData(queryParam: string) {
+  async fetchHistoricalData(queryParams: string) {
     await axios
-      .get(`${endpoints.apiUrl}${queryParam}`)
+      .get(`${endpoints.apiUrl}${this.state.state}${queryParams}`)
       .then(res => {
         let response = normalizeResponse(res.data);
 
@@ -47,22 +50,38 @@ class Ocelot extends Component {
   }
 
   async componentWillMount() {
-    const queryParam: string = "?year=2019&month=10&day=29";
-    await this.fetchHistoricalData(queryParam);
+    await this.fetchHistoricalData(this.state.queryParams);
   }
 
   handleDateChange = (date: any) => {
-    this.setState({
-      zones: null,
-      date: date,
-      displayDate: format(date, "MM/dd/yyyy")
-    });
-
     const month = format(date, "M");
     const day = format(date, "dd");
     const year = format(date, "yyyy");
-    const queryParam = `?year=${year}&month=${month}&day=${day}`;
-    this.fetchHistoricalData(queryParam);
+    const queryParams = `?year=${year}&month=${month}&day=${day}`;
+
+    this.setState(
+      {
+        tasks: null,
+        date: date,
+        displayDate: format(date, "MM/dd/yyyy"),
+        queryParams
+      },
+      () => {
+        this.fetchHistoricalData(queryParams);
+      }
+    );
+  };
+
+  handleStateSelectionChange = (event: any) => {
+    this.setState(
+      {
+        tasks: null,
+        state: event.target.value
+      },
+      () => {
+        this.fetchHistoricalData(this.state.queryParams);
+      }
+    );
   };
 
   render() {
@@ -77,8 +96,13 @@ class Ocelot extends Component {
               value={this.state.date}
               onChange={e => this.handleDateChange(e.value)}
             ></Calendar>
-            &nbsp;
-            <span> Historical data for {this.state.displayDate} </span>
+            &nbsp; Select a state &nbsp;
+            <select onChange={this.handleStateSelectionChange}>
+              <option value="newyork"> New York </option>
+              <option value="newjersey"> New Jesey </option>
+              <option value="pennsylvania"> Pennsylvania</option>
+            </select>
+            &nbsp; |<span> Historical data for {this.state.displayDate} </span>
           </div>
           {this.state.tasks != null ? (
             <>

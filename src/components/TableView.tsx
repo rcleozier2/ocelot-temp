@@ -29,9 +29,9 @@ const TableView = (props: Props) => {
   // Build Row Data
   tasks.data.forEach((task: any) => {
     let obj: Tasks = {
-      name : task.name 
+      name: task.name
     };
-    
+
     timeslots.forEach(slot => {
       obj[slot + "_r"] = task[slot].completed;
       obj[slot + "_ua"] = task[slot].completedOntime;
@@ -48,32 +48,32 @@ const TableView = (props: Props) => {
         <Column
           header="4AM - 9AM (Too Early)"
           colSpan={4}
-          style={{ "backgroundColor": "#FFCA58" }}
+          style={{ backgroundColor: "#FFCA58" }}
         />
         <Column
           header="9AM-Noon"
           colSpan={4}
-          style={{ "backgroundColor": "#6ba3e5" }}
+          style={{ backgroundColor: "#6ba3e5" }}
         />
         <Column
           header="Noon-3PM"
           colSpan={4}
-          style={{ "backgroundColor": "#6ba3e5" }}
+          style={{ backgroundColor: "#6ba3e5" }}
         />
         <Column
           header="3PM-6PM"
           colSpan={4}
-          style={{ "backgroundColor": "#6ba3e5" }}
+          style={{ backgroundColor: "#6ba3e5" }}
         />
         <Column
           header="6PM-9PM"
           colSpan={4}
-          style={{ "backgroundColor": "#6ba3e5" }}
+          style={{ backgroundColor: "#6ba3e5" }}
         />
         <Column
           header="9PM-4AM (Too Late)"
           colSpan={4}
-          style={{ "backgroundColor": "#FFCA58" }}
+          style={{ backgroundColor: "#FFCA58" }}
         />
       </Row>
 
@@ -129,7 +129,7 @@ const TableView = (props: Props) => {
     <DataTable
       value={tableData}
       headerColumnGroup={headerGroup}
-      footerColumnGroup={footerGroup}
+      // footerColumnGroup={footerGroup}
     >
       <Column field="name" />
 
