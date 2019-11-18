@@ -5,7 +5,7 @@ import {
 
 interface Props {
     zones: any;
-    drivers: null | Array<string>
+    drivers: null | Array<string>;
 }
 
 interface Zones {
@@ -33,8 +33,8 @@ const BarChartView = (props: Props) => {
         let obj: Zones = {
             name: `Zone ${i}`,
             Completed: zones[zone].total.completed, 
-            Ontime: zones[zone].total.ontime, 
-            Late: zones[zone].total.late, 
+            Ontime: zones[zone].total.completedOntime, 
+            Late: zones[zone].total.completedLate, 
             Failed: zones[zone].total.failed
         };
 

@@ -10,10 +10,11 @@ interface Zones {
 
 interface Props {
   zones: Array<string>;
-  drivers: null | Array<string>
+  drivers: null | Array<string>;
 }
 
 const TableView = (props: Props) => {
+  const tableData: Array<object> = [];
   const zones: Array<string> = props.zones;
   const zonenames: Array<string> = [
     "zone1",
@@ -24,6 +25,7 @@ const TableView = (props: Props) => {
     "zone6",
     "zoneless"
   ];
+  
   const timeslots: Array<string> = [
     "slot4amTo9am",
     "slot9amTo12pm",
@@ -32,7 +34,6 @@ const TableView = (props: Props) => {
     "slot6pmTo9pm",
     "slot9pmTo4am"
   ];
-  const tableData: Array<object> = [];
 
   // Build Row Data
   zonenames.forEach(zonename => {
@@ -42,8 +43,8 @@ const TableView = (props: Props) => {
     
     timeslots.forEach(slot => {
       obj[slot + "_r"] = zones[zonename][slot].completed;
-      obj[slot + "_ua"] = zones[zonename][slot].ontime;
-      obj[slot + "_d"] = zones[zonename][slot].late;
+      obj[slot + "_ua"] = zones[zonename][slot].completedOntime;
+      obj[slot + "_d"] = zones[zonename][slot].completedLate;
       obj[slot + "_f"] = zones[zonename][slot].failed;
     });
     tableData.push(obj);

@@ -19,11 +19,11 @@ interface State {
   zones: null | Array<any>;
   drivers: null | Array<any>;
   displayDate: string;
-  date: Date
+  date: Date;
 }
 
 class Ocelot extends Component {
-  
+
   state: State = {
     zones: null,
     drivers: null,
@@ -36,8 +36,8 @@ class Ocelot extends Component {
       .get(`${endpoints.apiUrl}${queryParam}`)
       .then(res => {
         this.setState({
-          zones: res.data.zoneTable,
-          drivers: res.data.driverTable
+          zones: res.data.tasks,
+          drivers: res.data.drivers
         });
       })
       .catch(err => console.log(`Error: ${err}`));
