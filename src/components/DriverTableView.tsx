@@ -4,18 +4,15 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 
-interface Tasks {
-  [key: string]: string;
-}
-
 interface Props {
   tasks: any;
   drivers: any;
 }
 
-const TableView = (props: Props) => {
+const DriverTableView = (props: Props) => {
   const tableData: Array<object> = [];
-  const tasks = props.tasks;
+  const drivers = props.drivers;
+  const keys = Object.keys(drivers);
 
   const timeslots: Array<string> = [
     "slot4amTo9am",
@@ -26,17 +23,20 @@ const TableView = (props: Props) => {
     "slot9pmTo4am"
   ];
 
+
   // Build Row Data
-  tasks.data.forEach((task: any) => {
-    let obj: Tasks = {
-      name: task.name
+  keys.forEach((key: any) => {
+    let obj = {
+        name: key.substring(0,5)
     };
 
+    let driver = drivers[key];
+
     timeslots.forEach(slot => {
-      obj[slot + "_r"] = task[slot].completed;
-      obj[slot + "_ua"] = task[slot].completedOntime;
-      obj[slot + "_d"] = task[slot].completedLate;
-      obj[slot + "_f"] = task[slot].failed;
+      obj[slot + "_r"] = driver[slot].completed;
+      obj[slot + "_ua"] = driver[slot].completedOntime;
+      obj[slot + "_d"] = driver[slot].completedLate;
+      obj[slot + "_f"] = driver[slot].failed;
     });
     tableData.push(obj);
   });
@@ -44,7 +44,7 @@ const TableView = (props: Props) => {
   let headerGroup = (
     <ColumnGroup>
       <Row>
-        <Column header="Zone" rowSpan={4} style={{ width: "80px" }} />
+        <Column header="Driver" rowSpan={4} style={{ width: "80px" }} />
         <Column
           header="4AM - 9AM (Too Early)"
           colSpan={4}
@@ -166,4 +166,4 @@ const TableView = (props: Props) => {
   );
 };
 
-export default TableView;
+export default DriverTableView;

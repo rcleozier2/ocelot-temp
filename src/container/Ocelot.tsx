@@ -7,6 +7,7 @@ import { Calendar } from "primereact/calendar";
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
 import TableView from "../components/TableView";
+import DriverTableView from "../components/DriverTableView";
 import BarChartView from "../components/BarChartView";
 import PieChartView from "../components/PieChartView";
 
@@ -107,6 +108,12 @@ class Ocelot extends Component {
           {this.state.tasks != null ? (
             <>
               <div className="page-container__data">
+              <div className="page-container__data-table data-container">
+                  <DriverTableView
+                    tasks={this.state.tasks}
+                    drivers={this.state.drivers}
+                  />
+                </div>
                 <div className="page-container__data-table data-container">
                   <TableView
                     tasks={this.state.tasks}
