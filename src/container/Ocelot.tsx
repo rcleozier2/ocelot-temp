@@ -11,12 +11,13 @@ import BarChartView from "../components/BarChartView";
 import PieChartView from "../components/PieChartView";
 
 import endpoints from "../config/endpoints";
+import normalizeResponse from '../helper/normalize';
 
 import "./Ocelot.scss";
 import "./Reset.scss";
 
 interface State {
-  zones: null | Array<any>;
+  tasks: null | Array<any>;
   drivers: null | Array<any>;
   displayDate: string;
   date: Date;
@@ -25,7 +26,7 @@ interface State {
 class Ocelot extends Component {
 
   state: State = {
-    zones: null,
+    tasks: null,
     drivers: null,
     displayDate: "10/29/2019",
     date: new Date()
@@ -35,9 +36,11 @@ class Ocelot extends Component {
     await axios
       .get(`${endpoints.apiUrl}${queryParam}`)
       .then(res => {
+        let response = normalizeResponse(res.data);
+
         this.setState({
-          zones: res.data.tasks,
-          drivers: res.data.drivers
+          tasks: response.tasks,
+          drivers: response.drivers
         });
       })
       .catch(err => console.log(`Error: ${err}`));
@@ -77,25 +80,25 @@ class Ocelot extends Component {
             &nbsp;
             <span> Historical data for {this.state.displayDate} </span>
           </div>
-          {this.state.zones != null ? (
+          {this.state.tasks != null ? (
             <>
               <div className="page-container__data">
                 <div className="page-container__data-table data-container">
                   <TableView
-                    zones={this.state.zones}
+                    tasks={this.state.tasks}
                     drivers={this.state.drivers}
                   />
                 </div>
                 <div className="page-container__data-charts">
                   <div className="page-container__data-chart data-container-half">
                     <BarChartView
-                      zones={this.state.zones}
+                      tasks={this.state.tasks}
                       drivers={this.state.drivers}
                     />
                   </div>
                   <div className="page-container__data-chart data-container-half">
                     <PieChartView
-                      zones={this.state.zones}
+                      tasks={this.state.tasks}
                       drivers={this.state.drivers}
                     />
                   </div>

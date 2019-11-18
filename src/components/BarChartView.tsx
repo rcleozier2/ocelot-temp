@@ -4,7 +4,7 @@ import {
   } from 'recharts';
 
 interface Props {
-    zones: any;
+    tasks: any;
     drivers: null | Array<string>;
 }
 
@@ -17,33 +17,25 @@ interface Zones {
 }
 
 const BarChartView = (props: Props) => {
-    const zones = props.zones;
-
-    const data: Array<any> = [{
-        name: 'Zoneless', 
-        Completed: zones.zoneless.total.completed, 
-        Ontime: zones.zoneless.total.ontime, 
-        Late: zones.zoneless.total.late, 
-        Failed: zones.zoneless.total.failed
-    }];
+    const tasks = props.tasks;
+    const data: Array<any> = [];
    
-    // Build Zones
-    for (let i = 1; i <= 6; i++ ) {
-        let zone: string = `zone${i}`;
+    // Build Tasks
+    tasks.data.forEach((task: any) => {
         let obj: Zones = {
-            name: `Zone ${i}`,
-            Completed: zones[zone].total.completed, 
-            Ontime: zones[zone].total.completedOntime, 
-            Late: zones[zone].total.completedLate, 
-            Failed: zones[zone].total.failed
+            name: task.name,
+            Completed: task.total.completed, 
+            Ontime: task.total.completedOntime, 
+            Late: task.total.completedLate, 
+            Failed: task.total.failed
         };
 
         data.push(obj);
-    };
+    });
 
     return (
         <>
-            <h1>Deliveries by Zone </h1>
+            <h1>Deliveries Stats </h1>
             <BarChart
                 width={550}
                 height={350}

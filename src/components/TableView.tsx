@@ -4,28 +4,19 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 
-interface Zones {
+interface Tasks {
   [key: string]: string;
 }
 
 interface Props {
-  zones: Array<string>;
+  tasks: any;
   drivers: null | Array<string>;
 }
 
 const TableView = (props: Props) => {
   const tableData: Array<object> = [];
-  const zones: Array<string> = props.zones;
-  const zonenames: Array<string> = [
-    "zone1",
-    "zone2",
-    "zone3",
-    "zone4",
-    "zone5",
-    "zone6",
-    "zoneless"
-  ];
-  
+  const tasks = props.tasks;
+
   const timeslots: Array<string> = [
     "slot4amTo9am",
     "slot9amTo12pm",
@@ -36,16 +27,16 @@ const TableView = (props: Props) => {
   ];
 
   // Build Row Data
-  zonenames.forEach(zonename => {
-    let obj: Zones = {
-      name : zonename
+  tasks.data.forEach((task: any) => {
+    let obj: Tasks = {
+      name : task.name 
     };
     
     timeslots.forEach(slot => {
-      obj[slot + "_r"] = zones[zonename][slot].completed;
-      obj[slot + "_ua"] = zones[zonename][slot].completedOntime;
-      obj[slot + "_d"] = zones[zonename][slot].completedLate;
-      obj[slot + "_f"] = zones[zonename][slot].failed;
+      obj[slot + "_r"] = task[slot].completed;
+      obj[slot + "_ua"] = task[slot].completedOntime;
+      obj[slot + "_d"] = task[slot].completedLate;
+      obj[slot + "_f"] = task[slot].failed;
     });
     tableData.push(obj);
   });
@@ -57,32 +48,32 @@ const TableView = (props: Props) => {
         <Column
           header="4AM - 9AM (Too Early)"
           colSpan={4}
-          style={{ "background-color": "#FFCA58" }}
+          style={{ "backgroundColor": "#FFCA58" }}
         />
         <Column
           header="9AM-Noon"
           colSpan={4}
-          style={{ "background-color": "#6ba3e5" }}
+          style={{ "backgroundColor": "#6ba3e5" }}
         />
         <Column
           header="Noon-3PM"
           colSpan={4}
-          style={{ "background-color": "#6ba3e5" }}
+          style={{ "backgroundColor": "#6ba3e5" }}
         />
         <Column
           header="3PM-6PM"
           colSpan={4}
-          style={{ "background-color": "#6ba3e5" }}
+          style={{ "backgroundColor": "#6ba3e5" }}
         />
         <Column
           header="6PM-9PM"
           colSpan={4}
-          style={{ "background-color": "#6ba3e5" }}
+          style={{ "backgroundColor": "#6ba3e5" }}
         />
         <Column
           header="9PM-4AM (Too Late)"
           colSpan={4}
-          style={{ "background-color": "#FFCA58" }}
+          style={{ "backgroundColor": "#FFCA58" }}
         />
       </Row>
 

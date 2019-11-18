@@ -7,19 +7,20 @@ interface Options {
 }
 
 interface Props {
-    zones: any;
+    tasks: any;
     drivers: null | Array<string>
 }
 
 const PieChartView = (props: Props)=> {
-    const zones = props.zones;
-    const pieData: Array<number> = [zones.zoneless.total.failed];
+    const tasks = props.tasks;
+    const pieData: Array<number> = [];
+    const labels: Array<string> = [];
    
-    // Build Zones
-    for (let i = 1; i <= 6; i++ ) {
-        let zone: string = `zone${i}`;
-        pieData.push(zones[zone].total.failed);
-    };
+    // Build Task and Labels
+    tasks.data.forEach((task: any) => {
+        labels.push(task.name)
+        pieData.push(task.total.failed);
+    });
 
     const options: Options = {
         height: '200',
@@ -27,7 +28,7 @@ const PieChartView = (props: Props)=> {
     };
 
     const data = {
-        labels: ['Zoneless','Zone 1','Zone 2', 'Zone 3', 'Zone 4', 'Zone 5', 'Zone 6'],
+        labels,
         datasets: [
             {
                 data : pieData,
@@ -54,7 +55,7 @@ const PieChartView = (props: Props)=> {
 
     return (
         <> 
-            <h1>Failures By Zone </h1>
+            <h1>Failures Stats </h1>
             <Chart type="pie" data={data} options={options} />
         </>
     );
