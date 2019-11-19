@@ -4,8 +4,6 @@ import { format } from "date-fns";
 import { ProgressBar } from "primereact/progressbar";
 import { Calendar } from "primereact/calendar";
 
-import Header from "../components/layout/Header/Header";
-import Footer from "../components/layout/Footer/Footer";
 import TableView from "../components/tables/TableView";
 import DriverTableView from "../components/tables/DriverTableView";
 import BarChartView from "../components/charts/BarChartView";
@@ -95,7 +93,7 @@ class Ocelot extends Component {
   render() {
     return (
       <>
-        <Header />
+  
         <div className="page-container">
           <div className="data-container">
             Select a date &nbsp;
@@ -149,7 +147,6 @@ class Ocelot extends Component {
             <ProgressBar mode="indeterminate" />
           )}
         </div>
-        <Footer />
       </>
     );
   }
