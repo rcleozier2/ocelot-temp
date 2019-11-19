@@ -127,7 +127,7 @@ class Ocelot extends Component {
                     drivers={this.state.drivers}
                   />
                 </div>
-                <div className="page-container__data-charts">
+                {/* <div className="page-container__data-charts">
                   <div className="page-container__data-chart data-container-half">
                     <BarChartView
                       tasks={this.state.tasks}
@@ -140,7 +140,7 @@ class Ocelot extends Component {
                       drivers={this.state.drivers}
                     />
                   </div>
-                </div>
+                </div> */}
                 <br />
                 <br />
               </div>
