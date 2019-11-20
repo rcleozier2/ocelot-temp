@@ -1,4 +1,4 @@
-interface NormalizeResponse {
+interface Normalize {
   drivers: Array<any>;
   tasks: {
     total: object;
@@ -6,9 +6,9 @@ interface NormalizeResponse {
   };
 }
 
-const normalizeResponse = (response: any) => {
+const normalize = (response: any) => {
   let keys = Object.keys(response.tasks);
-  let normalizedResponse: NormalizeResponse = {
+  let res: Normalize = {
     drivers: response.drivers,
     tasks: {
       total: response.tasks.dayTotal,
@@ -16,27 +16,17 @@ const normalizeResponse = (response: any) => {
     }
   };
 
-  if (keys.indexOf("zone1") > 0) {
-    keys.forEach(key => {
-      if (key !== "dayTotal") {
-        const data = {
-          name: key,
-          ...response.tasks[key]
-        };
-        normalizedResponse.tasks.data.push(data);
-      }
-    });
-  } else {
-    const data = {
-      name: "N/A",
-      total: response.tasks.dayTotal,
-      ...response.tasks
-    };
+  keys.forEach(key => {
+    if (key !== "dayTotal") {
+      const data = {
+        name: key,
+        ...response.tasks[key]
+      };
+      res.tasks.data.push(data);
+    }
+  });
 
-    normalizedResponse.tasks.data.push(data);
-  }
-
-  return normalizedResponse;
+  return res;
 };
 
-export default normalizeResponse;
+export default normalize;

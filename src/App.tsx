@@ -9,7 +9,8 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 
 import HomeContainer from "./container/HomeContainer";
-import TaskContainer from "./container/TaskContainer";
+import DriverTaskContainer from "./container/DriverTaskContainer";
+import ViewEventsContainer from "./container/ViewEventsContainer";
 
 class App extends Component {
   render() {
@@ -19,10 +20,11 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={HomeContainer} />
-            <Route path="/task/:id" exact component={TaskContainer} />
+            <Route path="/driver/task/:id" exact component={DriverTaskContainer} />
+            <Route path="/view/events/:id" exact component={ViewEventsContainer} />
           </Switch>
         </Router>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }

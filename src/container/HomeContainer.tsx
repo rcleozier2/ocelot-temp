@@ -6,11 +6,8 @@ import { Calendar } from "primereact/calendar";
 
 import TableView from "../components/tables/TableView";
 import DriverTableView from "../components/tables/DriverTableView";
-import BarChartView from "../components/charts/BarChartView";
-import PieChartView from "../components/charts/PieChartView";
-
 import endpoints from "../config/endpoints";
-import normalizeResponse from "../helper/normalize";
+import normalize from "../helper/normalize";
 
 import "./scss/Ocelot.scss";
 import "./scss/Reset.scss";
@@ -45,7 +42,7 @@ class Ocelot extends Component {
     await axios
       .get(`${endpoints.historicalApiUrl}${this.state.state}${queryParams}`)
       .then(res => {
-        let response = normalizeResponse(res.data);
+        let response = normalize(res.data);
 
         this.setState({
           tasks: response.tasks,
@@ -93,7 +90,6 @@ class Ocelot extends Component {
   render() {
     return (
       <>
-  
         <div className="page-container">
           <div className="data-container">
             Select a date &nbsp;
@@ -125,20 +121,6 @@ class Ocelot extends Component {
                     drivers={this.state.drivers}
                   />
                 </div>
-                {/* <div className="page-container__data-charts">
-                  <div className="page-container__data-chart data-container-half">
-                    <BarChartView
-                      tasks={this.state.tasks}
-                      drivers={this.state.drivers}
-                    />
-                  </div>
-                  <div className="page-container__data-chart data-container-half">
-                    <PieChartView
-                      tasks={this.state.tasks}
-                      drivers={this.state.drivers}
-                    />
-                  </div>
-                </div> */}
                 <br />
                 <br />
               </div>

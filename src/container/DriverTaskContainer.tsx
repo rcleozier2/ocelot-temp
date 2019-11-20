@@ -10,13 +10,13 @@ import {
 } from "react-google-maps";
 
 import endpoints from "../config/endpoints";
-import taskExtractor from "../helper/taskExtractor";
+import eventExtractor from "../helper/event-extractor";
 
 interface State {
   task: any;
 }
 
-class TaskContainer extends React.Component<RouteComponentProps<any>> {
+class DriverTaskContainer extends React.Component<RouteComponentProps<any>> {
   state: State = {
     task: null
   };
@@ -29,7 +29,7 @@ class TaskContainer extends React.Component<RouteComponentProps<any>> {
     await axios
       .get(`${endpoints.tasksApiUrl}${taskId}`)
       .then(res => {
-        let task = taskExtractor(res.data);
+        let task = eventExtractor(res.data);
         this.setState({
           task
         });
@@ -42,10 +42,18 @@ class TaskContainer extends React.Component<RouteComponentProps<any>> {
       withGoogleMap((props: any) => (
         <GoogleMap
           defaultZoom={8}
-          defaultCenter={{ lat: this.state.task.location[0], lng: this.state.task.location[1] }}
+          defaultCenter={{
+            lat: this.state.task.location[0],
+            lng: this.state.task.location[1]
+          }}
         >
           {props.isMarkerShown && (
-            <Marker position={{ lat: this.state.task.location[0], lng: this.state.task.location[1]}} />
+            <Marker
+              position={{
+                lat: this.state.task.location[0],
+                lng: this.state.task.location[1]
+              }}
+            />
           )}
         </GoogleMap>
       ))
@@ -68,17 +76,18 @@ class TaskContainer extends React.Component<RouteComponentProps<any>> {
             <p> {this.state.task.arrivalTimeDifference}</p>
             <p> {this.state.task.completionTimeDifference}</p>
 
-
-            <p> {this.state.task.completed }</p>
+            <p> {this.state.task.completed}</p>
             <p> {this.state.task.failureNotes}</p>
 
-
             <p> Total Time: {this.state.task.totalTime}</p>
-            
-            {this.state.task.taskChain.map(function(chain: any, index: number){
-            return (<span key={ index }>{chain.name} -> {chain.timestampDistance} ->  </span>);
+
+            {this.state.task.taskChain.map(function(chain: any, index: number) {
+              return (
+                <span key={index}>
+                  {chain.name} -> {chain.timestampDistance} ->{" "}
+                </span>
+              );
             })}
-            
           </>
         ) : (
           <ProgressBar mode="indeterminate" />
@@ -88,4 +97,4 @@ class TaskContainer extends React.Component<RouteComponentProps<any>> {
   }
 }
 
-export default TaskContainer;
+export default DriverTaskContainer;

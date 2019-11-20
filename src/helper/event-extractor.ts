@@ -22,7 +22,7 @@ interface NormailizedResponse {
   totalTime: string;
 }
 
-const taskExtractor = (tasks: any) => {
+const eventExtractor = (tasks: any) => {
   const normalizedResponse: NormailizedResponse = {
     distance: 0,
     address: get(tasks[0], "doc.data.task.destination.address", {}),
@@ -136,4 +136,4 @@ const taskExtractor = (tasks: any) => {
   return normalizedResponse;
 };
 
-export default taskExtractor;
+export default eventExtractor;
