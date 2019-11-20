@@ -14,7 +14,6 @@ $medly-green: #00d2b3;
   border: 1px solid #eee;
   margin-bottom: 30px;
 
-
   &-index {
     width: 8%;
     justify-content: center;
@@ -49,20 +48,22 @@ $medly-green: #00d2b3;
     padding-bottom: 10px;
   }
 
-  &-text {
-
-  }
-
   &-notes {
+    background: #ffffe1;
+    margin-top: 10px;
+    padding: 5px;
+    width: 40%;
+
+    &-alert {
       background: #ffffe1;
       margin-top: 10px;
       padding: 5px;
-      width: 40%;
+      width: 40%; 
+    }
 
-      span {
-          margin-top: 2px;
-          
-      }
+    span {
+      margin-top: 2px;
+    }
   }
 
   p {
@@ -71,17 +72,17 @@ $medly-green: #00d2b3;
 }
 
 .icon {
-    font-size: 2em !important;
+  font-size: 1.5em !important;
+  position: relative;
+  top: 6px;
+
+  &-small {
+    font-size: 1em !important;
     position: relative;
-    top: 10px;
+    top: 2px;
+  }
 
-    &-small {
-        font-size: 1em !important;
-        position: relative;
-        top: 2px;
-    }
-
-    &-red {
-        color:red
-    }
+  &-red {
+    color: red;
+  }
 }

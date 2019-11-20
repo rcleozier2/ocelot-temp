@@ -1,47 +1,49 @@
 import React from "react";
-import { Row } from "primereact/row";
 import { get } from "lodash";
 import { format } from "date-fns";
-
-import eventExtractor from "../../helper/event-extractor";
-
+import eventExtractor from "../../helpers/event-extractor";
 import "./EventsView.scss";
 
-function diffEvents(event1: object, event: object) {
-  let diff = "";
-
-  return diff;
-}
-
 const EventsView = (props: any) => {
-  const formatedEvents: Array<object> = [];
-  const normalizedEvent = eventExtractor(props.events);
+  const formattedEvents: Array<object> = [];
+  const normalizedTask = eventExtractor(props.events);
 
   const actualArrivalTime = format(
-    new Date(normalizedEvent.actualArrivalTime),
+    new Date(normalizedTask.actualArrivalTime),
     "MM/dd/yyyy h:mm a"
   );
 
   const actualCompletionTime = format(
-    new Date(normalizedEvent.actualCompletionTime),
+    new Date(normalizedTask.actualCompletionTime),
     "MM/dd/yyyy h:mm a"
   );
 
-  const deliveryTimeStatus = (normalizedEvent.completionTimeDifference == 0 ? "On-time" : "Late/Early");
-  const arrivaTimeStatus = (normalizedEvent.arrivalTimeDifference == 0 ? "On-time" : "Late/Early");
-  const completionTimeDifference = normalizedEvent.completionTimeDifference
+  const estimatedArrivalTime = format(
+    new Date(normalizedTask.estimatedArrivalTime),
+    "MM/dd/yyyy h:mm a"
+  );
+
+  const estimatedCompletionTime = format(
+    new Date(normalizedTask.estimatedCompletionTime),
+    "MM/dd/yyyy h:mm a"
+  );
+
+  const deliveryTimeStatus =
+  normalizedTask.completionTimeDifference === 0
+      ? "On-time"
+      : `Late/Early ${Math.abs(
+        normalizedTask.completionTimeDifference
+        )} Minutes`;
+  const arrivaTimeStatus =
+  normalizedTask.arrivalTimeDifference === 0
+      ? "On-time"
+      : `Late/Early ${Math.abs(normalizedTask.arrivalTimeDifference)} Minutes`;
 
   // Build Row Data
   props.events.forEach((event: any, index: number) => {
     const name = get(event, "doc.triggerName", "");
-    let diff = "";
-
-    if (name === "taskUpdated") {
-      diff = diffEvents(event, event[index - 1]);
-    }
-
-    let obj = {
-      index: index + 1,
+   
+    let formatedEvent = {
       name,
       create_date: format(
         new Date(get(event, "created", "")),
@@ -51,97 +53,106 @@ const EventsView = (props: any) => {
         new Date(get(event, "doc.data.task.timeLastModified", "")),
         "MM/dd/yyyy h:mm a"
       ),
-      admin: get(event, "adm_name", ""),
-      worker: get(event, "wkr_name", ""),
+      admin: get(event, "adm_name", null),
+      worker: get(event, "wkr_name", null),
       driverNotes: get(event, "doc.data.task.completionDetails.notes", ""),
       recipientsNotes: get(event, "doc.data.task.recipients[0].notes", ""),
-      taskNotes: get(event, "doc.data.task.notes", ""),
-      diff
+      taskNotes: get(event, "doc.data.task.notes", "")
     };
 
-    formatedEvents.push(obj);
+    formattedEvents.push(formatedEvent);
   });
 
   return (
     <>
       <div className="event-container">
-        {formatedEvents.map((event: any, index: number) => {
+        {formattedEvents.map((event: any, index: number) => {
           return (
             <div className="event">
               <div className="event-index">
-                {" "}
                 <span>
-                  <p>{event.index} </p>{" "}
+                  <p>{index + 1} </p>
                 </span>
               </div>
               <div className="event-content">
                 <p className="event-title">
                   Event: {event.name}
-                  {event.name == "taskFailed" && (
+                  {event.name === "taskFailed" && (
                     <i className="pi pi-exclamation-triangle icon icon-red"></i>
                   )}
                 </p>
                 <p className="event-text">
-                  {" "}
-                  <i className="pi pi-clock icon-small"></i> Created:{" "}
-                  {event.create_date}{" "}
+                  <i className="pi pi-clock icon-small"></i> Created:
+                  {event.create_date}
                 </p>
 
-                {event.admin != "" && (
+                {event.admin !== null && (
                   <p className="event-text">
-                    {" "}
-                    <i className="pi pi-user icon-small"></i> Admin:{" "}
-                    {event.admin}{" "}
+                    <i className="pi pi-user icon-small"></i> Admin:
+                    {event.admin}
                   </p>
                 )}
 
-                {event.worker != "" && (
+                {event.worker !== null && (
                   <p className="event-text">
-                    {" "}
-                    <i className="pi pi-user icon-small"></i> Worker:{" "}
-                    {event.worker}{" "}
+                    <i className="pi pi-user icon-small"></i> Worker:
+                    {event.worker}
                   </p>
                 )}
 
-                {event.name == "taskArrival" && (
+                {event.name === "taskArrival" && (
                   <p className="event-text">
                     <p>
-                      {" "}
+                      <i className="pi pi-clock icon-small"></i> Estimated
+                      Arrival Time {estimatedArrivalTime}
+                    </p>
+                    <p>
                       <i className="pi pi-clock icon-small"></i> Actual Arrival
                       Time {actualArrivalTime} - {arrivaTimeStatus}
                     </p>
-
-                  
                   </p>
                 )}
 
-                {event.name == "taskFailed" && (
+                {event.name === "taskFailed" && (
                   <p className="event-text">
                     <p>
-                      {" "}
+                      <i className="pi pi-clock icon-small"></i> Estimated
+                      Completed Time {estimatedCompletionTime}
+                    </p>
+                    <p>
                       <i className="pi pi-clock icon-small"></i> Actual
-                      Completed Time {actualCompletionTime} - {deliveryTimeStatus}
+                      Completed Time {actualCompletionTime} -{" "}
+                      {deliveryTimeStatus}
                     </p>
                   </p>
                 )}
 
-                {event.taskNotes != "" && (
+                {event.taskNotes !== "" &&  event.name === "taskStarted" && (
                   <div className="event-text event-notes">
-                    Task Notes: <br /> <span>{event.taskNotes}</span>{" "}
+                    Task Notes: <br /> <span>{event.taskNotes}</span>
                   </div>
                 )}
 
-                {event.recipientsNotes != "" && (
+                {event.recipientsNotes !== "" &&  event.name === "taskArrival" && (
                   <div className="event-text event-notes">
-                    Recipients Notes: <br />{" "}
-                    <span>{event.recipientsNotes}</span>{" "}
+                    Recipients Notes: <br />
+                    <span>{event.recipientsNotes}</span>
                   </div>
                 )}
 
-                {event.driverNotes != "" && (
-                  <div className="event-text event-notes">
-                    Driver Notes: <br /> <span>{event.driverNotes}</span>{" "}
-                  </div>
+                {event.name === "taskFailed" && (
+                  <>
+                    {event.driverNotes !== "" && (
+                      <div className="event-text event-notes">
+                        Driver Notes: <br /> <span>{event.driverNotes}</span>
+                      </div>
+                    )}
+                    {event.driverNotes === "" && (
+                      <div className="event-text event-notes-alert">
+                        <span> DRIVER DID NOT LEAVE NOTES </span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>

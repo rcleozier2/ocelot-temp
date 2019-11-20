@@ -1,6 +1,5 @@
 import { get, isNull } from "lodash";
 import { format, formatDistance, differenceInMinutes } from "date-fns";
-import normalizeResponse from "./normalize";
 
 interface NormailizedResponse {
   distance: number;

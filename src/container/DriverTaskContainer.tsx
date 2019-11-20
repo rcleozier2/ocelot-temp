@@ -1,16 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { ProgressBar } from "primereact/progressbar";
-import {
-  GoogleMap,
-  Marker,
-  withGoogleMap,
-  withScriptjs
-} from "react-google-maps";
-
 import endpoints from "../config/endpoints";
-import eventExtractor from "../helper/event-extractor";
+import eventExtractor from "../helpers/event-extractor";
 
 interface State {
   task: any;
@@ -38,27 +31,6 @@ class DriverTaskContainer extends React.Component<RouteComponentProps<any>> {
   }
 
   render() {
-    const MyMapComponent = withScriptjs(
-      withGoogleMap((props: any) => (
-        <GoogleMap
-          defaultZoom={8}
-          defaultCenter={{
-            lat: this.state.task.location[0],
-            lng: this.state.task.location[1]
-          }}
-        >
-          {props.isMarkerShown && (
-            <Marker
-              position={{
-                lat: this.state.task.location[0],
-                lng: this.state.task.location[1]
-              }}
-            />
-          )}
-        </GoogleMap>
-      ))
-    );
-
     return (
       <>
         {this.state.task != null ? (

@@ -4,10 +4,10 @@ import { format } from "date-fns";
 import { ProgressBar } from "primereact/progressbar";
 import { Calendar } from "primereact/calendar";
 
-import TableView from "../components/tables/TableView";
+import ZoneTableView from "../components/tables/ZoneTableView";
 import DriverTableView from "../components/tables/DriverTableView";
 import endpoints from "../config/endpoints";
-import normalize from "../helper/normalize";
+import normalize from "../helpers/normalize";
 
 import "./scss/Ocelot.scss";
 import "./scss/Reset.scss";
@@ -116,7 +116,7 @@ class Ocelot extends Component {
                   />
                 </div>
                 <div className="page-container__data-table data-container">
-                  <TableView
+                  <ZoneTableView
                     tasks={this.state.tasks}
                     drivers={this.state.drivers}
                   />

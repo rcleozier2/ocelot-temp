@@ -13,7 +13,7 @@ interface Props {
   drivers: any;
 }
 
-const TableView = (props: Props) => {
+const ZoneTableView = (props: Props) => {
   const tableData: Array<object> = [];
   const tasks = props.tasks;
 
@@ -111,26 +111,8 @@ const TableView = (props: Props) => {
     </ColumnGroup>
   );
 
-  let footerGroup = (
-    <ColumnGroup>
-      <Row>
-        <Column footer="Totals:" colSpan={1} />
-        <Column footer="0" colSpan={4} />
-        <Column footer="0" colSpan={4} />
-        <Column footer="0" colSpan={4} />
-        <Column footer="0" colSpan={4} />
-        <Column footer="0" colSpan={4} />
-        <Column footer="0" colSpan={4} />
-      </Row>
-    </ColumnGroup>
-  );
-
   return (
-    <DataTable
-      value={tableData}
-      headerColumnGroup={headerGroup}
-      // footerColumnGroup={footerGroup}
-    >
+    <DataTable value={tableData} headerColumnGroup={headerGroup}>
       <Column field="name" />
 
       <Column field="slot4amTo9am_r" />
@@ -166,4 +148,4 @@ const TableView = (props: Props) => {
   );
 };
 
-export default TableView;
+export default ZoneTableView;
