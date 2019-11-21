@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -12,12 +12,16 @@ import HomeContainer from "./container/HomeContainer";
 import DriverTaskContainer from "./container/DriverTaskContainer";
 import ViewEventsContainer from "./container/ViewEventsContainer";
 
+import "./App.scss";
+import "./App-Reset.scss";
+
 class App extends Component {
   render() {
     return (
       <>
-        <Header />
+    
         <Router>
+        <Header />
           <Switch>
             <Route path="/" exact component={HomeContainer} />
             <Route path="/driver/task/:id" exact component={DriverTaskContainer} />

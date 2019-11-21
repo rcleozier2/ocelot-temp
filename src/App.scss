@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css?family=Mandali&display=swap");
+$main-color: #012040;
+$medly-green: #00d2b3;
+$medly-green-dark: #3cdbc0;
+$medly-navy: #012040;
+$medly-blue: #6ba3e5;
+$background-color: #fff;
+
+html {
+  font-family: "Mandali";
+}
+
+body {
+  background-color: $background-color;
+}
+
+.page-container {
+  padding: 10px;
+  min-height: 700px;
+  &__data {
+    display: flex;
+    flex-direction: column;
+
+    &-table {
+      flex-basis: 100%;
+    }
+
+    &-charts {
+      flex-direction: row;
+      display: flex;
+    }
+
+    &-chart {
+      flex-basis: 45%;
+    }
+  }
+}
+
+.data-container {
+  border-radius: 5px;
+  background-color: #fff;
+  flex-basis: 93%;
+  height: auto;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &-half {
+    flex-basis: 50%;
+    margin-right: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+
+hr {
+    border-top: 1px dashed ccc;
+}

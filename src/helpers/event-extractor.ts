@@ -6,19 +6,27 @@ interface NormailizedResponse {
   address: object;
   location: object;
   recipients: object;
-  estimatedArrivalTime: number;
-  estimatedCompletionTime: number;
-  actualArrivalTime: number;
-  actualCompletionTime: number;
-  arrivalTimeDifference: number;
-  completionTimeDifference: number;
+  times: {
+    estimatedArrivalTime: number;
+    estimatedCompletionTime: number;
+    actualArrivalTime: number;
+    actualCompletionTime: number;
+    arrivalTimeDifference: number;
+    completionTimeDifference: number;
+    totalTime: string;
+    arrivalStatus: string;
+    completedStatus: string;
+  },
   completed: boolean;
   failed: boolean;
-  failureNotes: string;
   driver: string;
   admin: string;
   taskChain: Array<object>;
-  totalTime: string;
+  notes: {
+    driver: string;
+    task: string;
+    recipients: string;
+  };
 }
 
 const eventExtractor = (tasks: any) => {
@@ -29,17 +37,25 @@ const eventExtractor = (tasks: any) => {
     recipients: get(tasks[0], "doc.data.task.recipients", {}),
     driver: "",
     admin: "",
-    estimatedArrivalTime: 0,
-    estimatedCompletionTime: 0,
-    actualArrivalTime: 0,
-    actualCompletionTime: 0,
-    arrivalTimeDifference: 0,
-    completionTimeDifference: 0,
+    times: {
+      estimatedArrivalTime: 0,
+      estimatedCompletionTime: 0,
+      actualArrivalTime: 0,
+      actualCompletionTime: 0,
+      arrivalTimeDifference: 0,
+      completionTimeDifference: 0,
+      totalTime: "",
+      arrivalStatus: "ontime",
+      completedStatus: "ontime"
+    },
     completed: false,
     failed: false,
-    failureNotes: "",
     taskChain: [],
-    totalTime: ""
+    notes: {
+      driver: "",
+      recipients: "",
+      task: ""
+    },
   };
 
   tasks.forEach((task: any, index: number) => {
@@ -63,17 +79,23 @@ const eventExtractor = (tasks: any) => {
     if (get(task, "doc.triggerName", "") === "taskAssigned") {
       normalizedResponse.driver = get(task, "wkr_name", "");
       normalizedResponse.admin = get(task, "adm_name", "");
+      normalizedResponse.notes.task = get(task, "doc.data.task.notes", "");
     }
 
     if (get(task, "doc.triggerName", "") === "taskArrival") {
       normalizedResponse.distance = get(task, "doc.distance", 0);
-      normalizedResponse.actualArrivalTime = get(task, "doc.time", 0);
-      normalizedResponse.estimatedArrivalTime = get(
+      normalizedResponse.times.actualArrivalTime = get(task, "doc.time", 0);
+      normalizedResponse.notes.recipients = get(
+        task,
+        "doc.data.task.destination.notes",
+        ""
+      );
+      normalizedResponse.times.estimatedArrivalTime = get(
         task,
         "doc.data.task.estimatedArrivalTime",
         0
       );
-      normalizedResponse.estimatedCompletionTime = get(
+      normalizedResponse.times.estimatedCompletionTime = get(
         task,
         "doc.data.task.estimatedCompletionTime",
         0
@@ -81,7 +103,7 @@ const eventExtractor = (tasks: any) => {
     }
 
     if (get(task, "doc.triggerName", false) === "taskCompleted") {
-      normalizedResponse.actualCompletionTime = get(
+      normalizedResponse.times.actualCompletionTime = get(
         task,
         "doc.data.task.completionDetails.time",
         0
@@ -90,13 +112,13 @@ const eventExtractor = (tasks: any) => {
     }
 
     if (get(task, "doc.triggerName", false) === "taskFailed") {
-      normalizedResponse.actualCompletionTime = get(
+      normalizedResponse.times.actualCompletionTime = get(
         task,
         "doc.data.task.completionDetails.time",
         0
       );
       normalizedResponse.failed = true;
-      normalizedResponse.failureNotes = get(
+      normalizedResponse.notes.driver = get(
         task,
         "doc.data.task.completionDetails.notes",
         ""
@@ -105,32 +127,51 @@ const eventExtractor = (tasks: any) => {
   }); // End foreach
 
   if (
-    !isNull(normalizedResponse.estimatedArrivalTime) &&
-    !isNull(normalizedResponse.actualArrivalTime)
+    !isNull(normalizedResponse.times.estimatedArrivalTime) &&
+    !isNull(normalizedResponse.times.actualArrivalTime)
   ) {
-    normalizedResponse.arrivalTimeDifference = differenceInMinutes(
-      new Date(normalizedResponse.actualArrivalTime),
-      new Date(normalizedResponse.estimatedArrivalTime)
+    let difference = differenceInMinutes(
+      new Date(normalizedResponse.times.actualArrivalTime),
+      new Date(normalizedResponse.times.estimatedArrivalTime)
     );
+
+    if (difference > 0) {
+      normalizedResponse.times.arrivalStatus = "late";
+    }
+
+    if (difference < 0) {
+      normalizedResponse.times.arrivalStatus = "early";
+    }
+
+    normalizedResponse.times.arrivalTimeDifference  = Math.abs(difference);
   }
 
   if (
-    !isNull(normalizedResponse.estimatedCompletionTime) &&
-    !isNull(normalizedResponse.actualCompletionTime)
+    !isNull(normalizedResponse.times.estimatedCompletionTime) &&
+    !isNull(normalizedResponse.times.actualCompletionTime)
   ) {
-    normalizedResponse.completionTimeDifference = differenceInMinutes(
-      new Date(normalizedResponse.actualCompletionTime),
-      new Date(normalizedResponse.estimatedCompletionTime)
+    
+    let difference = differenceInMinutes(
+      new Date(normalizedResponse.times.actualCompletionTime),
+      new Date(normalizedResponse.times.estimatedCompletionTime)
     );
+
+    if (difference > 0) {
+      normalizedResponse.times.completedStatus = "late";
+    }
+
+    if (difference < 0) {
+      normalizedResponse.times.completedStatus = "early";
+    }
+
+    normalizedResponse.times.completionTimeDifference  = Math.abs(difference);
   }
 
-  normalizedResponse.totalTime = formatDistance(
+  normalizedResponse.times.totalTime = formatDistance(
     new Date(get(tasks[0], "ts", "")),
     new Date(get(tasks[tasks.length - 1], "ts", "")),
     { includeSeconds: true }
   );
-
-  console.log(normalizedResponse);
 
   return normalizedResponse;
 };

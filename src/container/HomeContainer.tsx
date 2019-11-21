@@ -9,9 +9,6 @@ import DriverTableView from "../components/tables/DriverTableView";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
-import "./scss/Ocelot.scss";
-import "./scss/Reset.scss";
-
 interface State {
   tasks: any;
   drivers: null | Array<any>;

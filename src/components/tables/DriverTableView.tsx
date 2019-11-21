@@ -26,7 +26,7 @@ const DriverTableView = (props: Props) => {
   // Build Row Data
   keys.forEach((key: any) => {
     let obj = {
-      name: key.substring(0, 5)
+      name: drivers[key].name
     };
 
     let driver = drivers[key];
@@ -43,7 +43,7 @@ const DriverTableView = (props: Props) => {
   let headerGroup = (
     <ColumnGroup>
       <Row>
-        <Column header="Driver" rowSpan={4} style={{ width: "80px" }} />
+        <Column header="Driver" rowSpan={4} style={{ width: "190px" }} />
         <Column
           header="4AM - 9AM"
           colSpan={4}
