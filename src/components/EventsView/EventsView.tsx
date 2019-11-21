@@ -77,24 +77,6 @@ const EventsView = (props: any) => {
 
           <p className="summary-text">
             <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Estimated Completed Time: </span>
-            {estimatedCompletionTime}
-          </p>
-
-          <p className="summary-text">
-            <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Actual Completed Time:</span>
-            {actualCompletionTime}
-          </p>
-          {normalizedTask.times.arrivalStatus !== "ontime" && (
-            <p className="summary-notes-time">
-              {normalizedTask.times.arrivalStatus} by{" "}
-              {normalizedTask.times.arrivalTimeDifference} Minutes{" "}
-            </p>
-          )}
-          <hr />
-          <p className="summary-text">
-            <i className="pi pi-clock icon-small"></i>{" "}
             <span>Estimated Arrival Time:</span>
             {estimatedArrivalTime}
           </p>
@@ -103,6 +85,26 @@ const EventsView = (props: any) => {
             <i className="pi pi-clock icon-small"></i>{" "}
             <span>Actual Arrival Time:</span>
             {actualArrivalTime}
+          </p>
+          {normalizedTask.times.arrivalStatus !== "ontime" && (
+            <p className="summary-notes-time">
+              {normalizedTask.times.arrivalStatus} by{" "}
+              {normalizedTask.times.arrivalTimeDifference} Minutes{" "}
+            </p>
+          )}
+
+          <hr />
+
+          <p className="summary-text">
+            <i className="pi pi-clock icon-small"></i>{" "}
+            <span>Estimated Completed Time: </span>
+            {estimatedCompletionTime}
+          </p>
+
+          <p className="summary-text">
+            <i className="pi pi-clock icon-small"></i>{" "}
+            <span>Actual Completed Time:</span>
+            {actualCompletionTime}
           </p>
 
           {normalizedTask.times.completedStatus !== "ontime" && (

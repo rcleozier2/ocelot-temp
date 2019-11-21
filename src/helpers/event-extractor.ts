@@ -76,9 +76,9 @@ const eventExtractor = (tasks: any) => {
       timestampDistance
     });
 
-    if (get(task, "doc.triggerName", "") === "taskAssigned") {
+    if (get(task, "doc.triggerName", "") === "taskStarted") {
       normalizedResponse.driver = get(task, "wkr_name", "");
-      normalizedResponse.admin = get(task, "adm_name", "");
+      normalizedResponse.admin = get(task, "creator_name", "");
       normalizedResponse.notes.task = get(task, "doc.data.task.notes", "");
     }
 

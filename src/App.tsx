@@ -13,7 +13,6 @@ import DriverTaskContainer from "./container/DriverTaskContainer";
 import ViewEventsContainer from "./container/ViewEventsContainer";
 
 import "./App.scss";
-import "./App-Reset.scss";
 
 class App extends Component {
   render() {

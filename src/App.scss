@@ -1,10 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Mandali&display=swap");
-$main-color: #012040;
-$medly-green: #00d2b3;
-$medly-green-dark: #3cdbc0;
-$medly-navy: #012040;
-$medly-blue: #6ba3e5;
-$background-color: #fff;
+@import "App-Reset.scss";
+@import "App-Variables.scss";
 
 html {
   font-family: "Mandali";
