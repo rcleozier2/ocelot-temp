@@ -62,32 +62,32 @@ const EventsView = (props: any) => {
             )}
           </p>
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-directions icon-small"></i>{" "}
             <span>Driver: </span>
             {normalizedTask.driver}
           </p>
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-user icon-small"></i> <span>Admin: </span>
             {normalizedTask.admin}
           </p>
 
           <hr />
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-clock icon-small"></i>{" "}
             <span>Estimated Arrival Time:</span>
             {estimatedArrivalTime}
           </p>
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-clock icon-small"></i>{" "}
             <span>Actual Arrival Time:</span>
             {actualArrivalTime}
           </p>
           {normalizedTask.times.arrivalStatus !== "ontime" && (
-            <p className="summary-notes-time">
+            <p className="summary-notes-time m-0">
               {normalizedTask.times.arrivalStatus} by{" "}
               {normalizedTask.times.arrivalTimeDifference} Minutes{" "}
             </p>
@@ -95,40 +95,48 @@ const EventsView = (props: any) => {
 
           <hr />
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-clock icon-small"></i>{" "}
             <span>Estimated Completed Time: </span>
             {estimatedCompletionTime}
           </p>
 
-          <p className="summary-text">
+          <p className="summary-text m-0">
             <i className="pi pi-clock icon-small"></i>{" "}
             <span>Actual Completed Time:</span>
             {actualCompletionTime}
           </p>
 
           {normalizedTask.times.completedStatus !== "ontime" && (
-            <p className="summary-notes-time">
+            <p className="summary-notes-time m-0">
               {normalizedTask.times.completedStatus} by{" "}
               {normalizedTask.times.completionTimeDifference} Minutes{" "}
             </p>
           )}
           <hr />
 
-          <div className="summary-notes">
-            <p>Task Notes:</p>
-            <span className="className">{normalizedTask.notes.task}</span>
-          </div>
+          {normalizedTask.notes.task !== "" && (
+            <div className="summary-notes">
+              <p>Task Notes:</p>
+              <span className="className">{normalizedTask.notes.task}</span>
+            </div>
+          )}
 
-          <div className="summary-notes">
-            <p>Recipient Notes:</p>
-            <span className="className">{normalizedTask.notes.recipients}</span>
-          </div>
+          {normalizedTask.notes.recipients !== "" && (
+            <div className="summary-notes">
+              <p>Recipient Notes:</p>
+              <span className="className">
+                {normalizedTask.notes.recipients}
+              </span>
+            </div>
+          )}
 
-          <div className="summary-notes">
-            <p>Driver Notes: </p>
-            <span> {normalizedTask.notes.driver}</span>
-          </div>
+          {normalizedTask.notes.driver !== "" && (
+            <div className="summary-notes">
+              <p>Driver Notes: </p>
+              <span> {normalizedTask.notes.driver}</span>
+            </div>
+          )}
         </div>
         <div className="event-container">
           {formattedEvents.map((event: any, index: number) => {

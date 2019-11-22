@@ -1,6 +1,6 @@
 {
   "name": "ocelot-frontend",
-  "homepage" : "https://www.medly.link/pharmOS/ocelot/",
+  "homepage": "https://www.medly.link/pharmOS/ocelot/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,10 +15,12 @@
     "@types/recharts": "^1.8.3",
     "axios": "^0.19.0",
     "babel-preset-react-app": "^9.0.2",
+    "bootstrap": "^4.3.1",
     "browser-sync": "^2.24.4",
     "chart.js": "^2.9.2",
     "date-fns": "^2.7.0",
     "lodash": "^4.17.15",
+    "node-sass": "^4.13.0",
     "primeicons": "^2.0.0",
     "primereact": "^3.3.2",
     "react": "^16.9.0",

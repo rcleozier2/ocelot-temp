@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { format } from "date-fns";
+import { format, startOfYesterday } from "date-fns";
 import { ProgressBar } from "primereact/progressbar";
 import { Calendar } from "primereact/calendar";
 
@@ -12,20 +12,25 @@ import normalize from "../helpers/normalize";
 interface State {
   tasks: any;
   drivers: null | Array<any>;
-  displayDate: string;
   date: Date;
   state: string;
   queryParams: string;
 }
 
+const yesterday = startOfYesterday();
+const defaultDate = {
+  month: format(yesterday, "M"),
+  day: format(yesterday, "dd"),
+  year: format(yesterday, "yyyy")
+};
+
 class Ocelot extends Component {
   state: State = {
     tasks: null,
     drivers: null,
-    displayDate: "10/29/2019",
-    date: new Date(),
+    date: yesterday,
     state: "newyork",
-    queryParams: "?year=2019&month=10&day=29"
+    queryParams: `?year=${defaultDate.year}&month=${defaultDate.month}&day=${defaultDate.day}`
   };
 
   async fetchUserData() {
@@ -63,7 +68,6 @@ class Ocelot extends Component {
       {
         tasks: null,
         date: date,
-        displayDate: format(date, "MM/dd/yyyy"),
         queryParams
       },
       () => {
@@ -88,20 +92,30 @@ class Ocelot extends Component {
     return (
       <>
         <div className="page-container">
-          <div className="data-container">
-            Select a date &nbsp;
-            <Calendar
-              dateFormat="mm/dd/yy"
-              value={this.state.date}
-              onChange={e => this.handleDateChange(e.value)}
-            ></Calendar>
-            &nbsp; Select a state &nbsp;
-            <select onChange={this.handleStateSelectionChange}>
-              <option value="newyork"> New York </option>
-              <option value="newjersey"> New Jesey </option>
-              <option value="pennsylvania"> Pennsylvania</option>
-            </select>
-            &nbsp; |<span> Historical data for {this.state.displayDate} </span>
+          <div className="data-container row">
+            <div className="col-2 negative-margin-top">
+              <p className="m-0"> Select a state </p>
+              <form>
+                <div className="form-group">
+                  <select
+                    className="form-control"
+                    onChange={this.handleStateSelectionChange}
+                  >
+                    <option value="newyork"> New York </option>
+                    <option value="newjersey"> New Jersey </option>
+                    <option value="pennsylvania"> Pennsylvania</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div className="col-2 negative-margin-top">
+              <p className="m-0"> Select a date </p>
+              <Calendar
+                dateFormat="mm/dd/yy"
+                value={this.state.date}
+                onChange={e => this.handleDateChange(e.value)}
+              ></Calendar>
+            </div>
           </div>
           {this.state.tasks != null ? (
             <>
@@ -123,7 +137,9 @@ class Ocelot extends Component {
               </div>
             </>
           ) : (
-            <ProgressBar mode="indeterminate" />
+            <div className="col-4 mx-auto mt-5">
+              <ProgressBar mode="indeterminate" />
+            </div>
           )}
         </div>
       </>

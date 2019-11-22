@@ -4,6 +4,7 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 
+
 interface Tasks {
   [key: string]: string;
 }
@@ -44,7 +45,7 @@ const ZoneTableView = (props: Props) => {
   let headerGroup = (
     <ColumnGroup>
       <Row>
-        <Column header="Zone" rowSpan={4} style={{ width: "80px" }} />
+        <Column header="Zone" rowSpan={4} style={{ width: "120px" }} />
         <Column
           header="4AM - 9AM"
           colSpan={4}

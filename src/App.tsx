@@ -13,6 +13,7 @@ import DriverTaskContainer from "./container/DriverTaskContainer";
 import ViewEventsContainer from "./container/ViewEventsContainer";
 
 import "./App.scss";
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   render() {

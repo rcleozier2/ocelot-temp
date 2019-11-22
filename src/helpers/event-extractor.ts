@@ -16,7 +16,7 @@ interface NormailizedResponse {
     totalTime: string;
     arrivalStatus: string;
     completedStatus: string;
-  },
+  };
   completed: boolean;
   failed: boolean;
   driver: string;
@@ -55,7 +55,7 @@ const eventExtractor = (tasks: any) => {
       driver: "",
       recipients: "",
       task: ""
-    },
+    }
   };
 
   tasks.forEach((task: any, index: number) => {
@@ -93,12 +93,12 @@ const eventExtractor = (tasks: any) => {
       normalizedResponse.times.estimatedArrivalTime = get(
         task,
         "doc.data.task.estimatedArrivalTime",
-        0
+        null
       );
       normalizedResponse.times.estimatedCompletionTime = get(
         task,
         "doc.data.task.estimatedCompletionTime",
-        0
+        null
       );
     }
 
@@ -106,7 +106,7 @@ const eventExtractor = (tasks: any) => {
       normalizedResponse.times.actualCompletionTime = get(
         task,
         "doc.data.task.completionDetails.time",
-        0
+        null
       );
       normalizedResponse.completed = true;
     }
@@ -115,7 +115,7 @@ const eventExtractor = (tasks: any) => {
       normalizedResponse.times.actualCompletionTime = get(
         task,
         "doc.data.task.completionDetails.time",
-        0
+        null
       );
       normalizedResponse.failed = true;
       normalizedResponse.notes.driver = get(
@@ -143,14 +143,13 @@ const eventExtractor = (tasks: any) => {
       normalizedResponse.times.arrivalStatus = "early";
     }
 
-    normalizedResponse.times.arrivalTimeDifference  = Math.abs(difference);
+    normalizedResponse.times.arrivalTimeDifference = Math.abs(difference);
   }
 
   if (
     !isNull(normalizedResponse.times.estimatedCompletionTime) &&
     !isNull(normalizedResponse.times.actualCompletionTime)
   ) {
-    
     let difference = differenceInMinutes(
       new Date(normalizedResponse.times.actualCompletionTime),
       new Date(normalizedResponse.times.estimatedCompletionTime)
@@ -164,7 +163,7 @@ const eventExtractor = (tasks: any) => {
       normalizedResponse.times.completedStatus = "early";
     }
 
-    normalizedResponse.times.completionTimeDifference  = Math.abs(difference);
+    normalizedResponse.times.completionTimeDifference = Math.abs(difference);
   }
 
   normalizedResponse.times.totalTime = formatDistance(

@@ -35,7 +35,7 @@ const DriverTableView = (props: Props) => {
       obj[slot + "_r"] = driver[slot].completed;
       obj[slot + "_ua"] = driver[slot].completedOntime;
       obj[slot + "_d"] = driver[slot].completedLate;
-      obj[slot + "_f"] = driver[slot].failed;
+      obj[slot + "_f"] = (driver[slot].failed !== 0 ? driver[slot].failed : "-")
     });
     tableData.push(obj);
   });
