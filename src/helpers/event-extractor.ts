@@ -9,7 +9,13 @@ import {
 
 interface NormailizedResponse {
   distance: number;
-  address: object;
+  address: {
+    number: any;
+    street: string;
+    city: string;
+    state: string;
+    postalCode: number | string;
+  };
   location: object;
   recipients: object;
   times: {

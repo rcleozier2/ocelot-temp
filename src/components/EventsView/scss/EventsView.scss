@@ -48,11 +48,21 @@
   font-size: 16px;
 }
 
+.summary-notes-notice {
+  text-transform: capitalize;
+  margin-top: 5px;
+  color:$medly-green;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
 .summary-notes {
   margin-top: 5px;
 
   p {
     font-size: 18px;
+    margin-bottom: 2px;
   }
 
   > span {

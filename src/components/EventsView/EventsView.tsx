@@ -33,15 +33,6 @@ const EventsView = (props: any) => {
       )
     : "Not Set";
 
-  const estimatedCompletionTime = !isNull(
-    normalizedTask.times.estimatedCompletionTime
-  )
-    ? format(
-        new Date(normalizedTask.times.estimatedCompletionTime),
-        "MM/dd/yyyy h:mm a"
-      )
-    : "Not Set";
-
   const completeAfter = !isNull(normalizedTask.times.completeAfter)
     ? format(new Date(normalizedTask.times.completeAfter), "MM/dd/yyyy h:mm a")
     : "Not Set";
@@ -95,44 +86,20 @@ const EventsView = (props: any) => {
             {normalizedTask.admin}
           </p>
 
+          <hr />
           <p className="summary-text m-0">
+            {normalizedTask.recipients[0].name} <br />
+            {normalizedTask.address.number} {normalizedTask.address.street}{" "}
+            <br />
+            {normalizedTask.address.city}, {normalizedTask.address.state}{" "}
+            {normalizedTask.address.postalCode} <br />
+            {normalizedTask.recipients[0].phone} <br />
+          </p>
+
+          {/* <p className="summary-text m-0">
             <span>Total time to completion:</span>
             {normalizedTask.times.totalTime}
-          </p>
-
-          <hr />
-
-          <p className="summary-text m-0">
-            <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Estimated Arrival Time:</span>
-            {estimatedArrivalTime}
-          </p>
-
-          <p className="summary-text m-0">
-            <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Actual Arrival Time:</span>
-            {actualArrivalTime}
-          </p>
-          {normalizedTask.times.arrivalStatus !== "ontime" && (
-            <p className="summary-notes-time m-0">
-              {normalizedTask.times.arrivalStatus} by onfleet estimates by{" "}
-              {normalizedTask.times.arrivalTimeDifference} Minutes{" "}
-            </p>
-          )}
-
-          <hr />
-
-          <p className="summary-text m-0">
-            <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Estimated Completed Time: </span>
-            {estimatedCompletionTime}
-          </p>
-
-          <p className="summary-text m-0">
-            <i className="pi pi-clock icon-small"></i>{" "}
-            <span>Actual Completed Time:</span>
-            {actualCompletionTime}
-          </p>
+          </p> */}
 
           <hr />
           <p className="summary-text m-0">
@@ -146,6 +113,35 @@ const EventsView = (props: any) => {
               </p>
             )}
           </p>
+          <hr />
+
+          <p className="summary-text m-0">
+            <i className="pi pi-clock icon-small"></i>{" "}
+            <span>Estimated Arrival Time:</span>
+            {estimatedArrivalTime}
+          </p>
+
+          <p className="summary-text m-0">
+            <i className="pi pi-clock icon-small"></i>{" "}
+            <span>Actual Arrival Time:</span>
+            {actualArrivalTime}
+          </p>
+
+          {normalizedTask.times.arrivalStatus !== "ontime" && (
+            <p className="summary-notes-notice m-0">
+              {normalizedTask.times.arrivalStatus} by Onfleets estimate by{" "}
+              {normalizedTask.times.arrivalTimeDifference} Minutes{" "}
+            </p>
+          )}
+
+          <hr />
+
+          <p className="summary-text m-0">
+            <i className="pi pi-clock icon-small"></i>{" "}
+            <span>Actual Completed Time:</span>
+            {actualCompletionTime}
+          </p>
+
           <hr />
 
           {normalizedTask.notes.task !== "" && (
