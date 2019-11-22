@@ -45,7 +45,7 @@
   margin-top: 5px;
   color: red;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .summary-notes {
@@ -100,6 +100,7 @@
       font-size: 20px;
       color: white;
       font-weight: bold;
+      margin-top:5px;
     }
   }
 
@@ -108,12 +109,10 @@
   }
 
   &-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-transform: capitalize;
-    padding-bottom: 2px;
   }
-
 
   p {
     margin-bottom: 5px;

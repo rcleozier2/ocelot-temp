@@ -24,7 +24,6 @@ class ViewEventsContainer extends React.Component<RouteComponentProps<any>> {
     await axios
       .get(`${endpoints.tasksApiUrl}${taskId}`)
       .then(res => {
-        console.log(res.data);
         this.setState({
           events: ( isArray(res.data) ? res.data : null)
         });

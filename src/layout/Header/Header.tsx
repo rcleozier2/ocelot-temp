@@ -12,7 +12,7 @@ const Header = () => {
           <img src={logo} alt="Logo" className="header-logo" />
         </Link>
       </div>
-      <div className="header-right">Ocelot</div>
+      <div className="header-right">Onfleet Events</div>
     </div>
   );
 };

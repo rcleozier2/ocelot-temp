@@ -1,5 +1,11 @@
 import { get, isNull } from "lodash";
-import { format, formatDistance, differenceInMinutes } from "date-fns";
+import {
+  format,
+  formatDistance,
+  differenceInMinutes,
+  isAfter,
+  isBefore
+} from "date-fns";
 
 interface NormailizedResponse {
   distance: number;
@@ -7,15 +13,17 @@ interface NormailizedResponse {
   location: object;
   recipients: object;
   times: {
-    estimatedArrivalTime: number;
-    estimatedCompletionTime: number;
-    actualArrivalTime: number;
-    actualCompletionTime: number;
+    estimatedArrivalTime: null| number;
+    estimatedCompletionTime: null |number;
+    actualArrivalTime: null |number;
+    actualCompletionTime: null |number;
     arrivalTimeDifference: number;
     completionTimeDifference: number;
     totalTime: string;
     arrivalStatus: string;
     completedStatus: string;
+    completeAfter: null | number;
+    completeBefore: null | number;
   };
   completed: boolean;
   failed: boolean;
@@ -38,12 +46,14 @@ const eventExtractor = (tasks: any) => {
     driver: "",
     admin: "",
     times: {
-      estimatedArrivalTime: 0,
-      estimatedCompletionTime: 0,
-      actualArrivalTime: 0,
-      actualCompletionTime: 0,
+      estimatedArrivalTime: null,
+      estimatedCompletionTime: null,
+      actualArrivalTime: null,
+      actualCompletionTime: null,
       arrivalTimeDifference: 0,
       completionTimeDifference: 0,
+      completeBefore: null,
+      completeAfter: null,
       totalTime: "",
       arrivalStatus: "ontime",
       completedStatus: "ontime"
@@ -100,6 +110,16 @@ const eventExtractor = (tasks: any) => {
         "doc.data.task.estimatedCompletionTime",
         null
       );
+      normalizedResponse.times.completeAfter = get(
+        task,
+        "doc.data.task.completeAfter",
+        null
+      );
+      normalizedResponse.times.completeBefore = get(
+        task,
+        "doc.data.task.completeBefore",
+        null
+      );
     }
 
     if (get(task, "doc.triggerName", false) === "taskCompleted") {
@@ -147,20 +167,36 @@ const eventExtractor = (tasks: any) => {
   }
 
   if (
-    !isNull(normalizedResponse.times.estimatedCompletionTime) &&
+    !isNull(normalizedResponse.times.completeBefore) &&
+    !isNull(normalizedResponse.times.completeAfter) &&
     !isNull(normalizedResponse.times.actualCompletionTime)
   ) {
-    let difference = differenceInMinutes(
-      new Date(normalizedResponse.times.actualCompletionTime),
-      new Date(normalizedResponse.times.estimatedCompletionTime)
-    );
+    let difference = 0;
 
-    if (difference > 0) {
-      normalizedResponse.times.completedStatus = "late";
+    if (
+      isBefore(
+        new Date(normalizedResponse.times.actualCompletionTime),
+        new Date(normalizedResponse.times.completeAfter)
+      )
+    ) {
+      difference = differenceInMinutes(
+        new Date(normalizedResponse.times.completeAfter),
+        new Date(normalizedResponse.times.actualCompletionTime)
+      );
+      normalizedResponse.times.completedStatus = "early";
     }
 
-    if (difference < 0) {
-      normalizedResponse.times.completedStatus = "early";
+    if (
+      isAfter(
+        new Date(normalizedResponse.times.actualCompletionTime),
+        new Date(normalizedResponse.times.completeBefore)
+      )
+    ) {
+      difference = differenceInMinutes(
+        new Date(normalizedResponse.times.completeBefore),
+        new Date(normalizedResponse.times.actualCompletionTime)
+      );
+      normalizedResponse.times.completedStatus = "late";
     }
 
     normalizedResponse.times.completionTimeDifference = Math.abs(difference);
