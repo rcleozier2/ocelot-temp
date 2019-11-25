@@ -2,7 +2,7 @@ import React from "react";
 import { get, isNull } from "lodash";
 import { format } from "date-fns";
 import eventExtractor from "../../helpers/event-extractor";
-import "./scss/EventsView.scss";
+import "./EventsView.scss";
 
 const EventsView = (props: any) => {
   const formattedEvents: Array<object> = [];

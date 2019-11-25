@@ -14,7 +14,7 @@ class DriverTaskContainer extends React.Component<RouteComponentProps<any>> {
     task: null
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.fetchTaskData(this.props.match.params.id);
   }
 

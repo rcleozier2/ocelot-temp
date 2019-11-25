@@ -1,10 +1,7 @@
-$medly-green: #00d2b3;
-$medly-blue: #6ba3e5;
-$medly-dark-blue: #012040;
-
+@import "../../App-Variables.scss";
 .header {
   height: 50px;
-  background-color: $medly-dark-blue;
+  background-color: $medly-navy;
   display: flex;
   flex-direction: row;
   align-items: center;

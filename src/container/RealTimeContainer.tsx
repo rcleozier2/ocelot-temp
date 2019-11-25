@@ -1,48 +1,37 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { format, startOfYesterday } from "date-fns";
+import { format } from "date-fns";
 import { ProgressBar } from "primereact/progressbar";
-import { Calendar } from "primereact/calendar";
 
-import ZoneTableView from "../components/tables/ZoneTableView";
-import DriverTableView from "../components/tables/DriverTableView";
+import Navigation from "../layout/Navigation/Navigation";
+import ZoneTableView from "../components/ZoneTableView/ZoneTableView";
+import DriverTableView from "../components/DriverTableView/DriverTableView";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
 interface State {
   tasks: any;
   drivers: null | Array<any>;
-  date: Date;
   state: string;
-  queryParams: string;
 }
-
-const yesterday = startOfYesterday();
-const defaultDate = {
-  month: format(yesterday, "M"),
-  day: format(yesterday, "dd"),
-  year: format(yesterday, "yyyy")
-};
 
 class Ocelot extends Component {
   state: State = {
     tasks: null,
     drivers: null,
-    date: yesterday,
-    state: "newyork",
-    queryParams: `?year=${defaultDate.year}&month=${defaultDate.month}&day=${defaultDate.day}`
+    state: "newyork"
   };
 
   async fetchUserData() {
     await axios
-      .get(`${endpoints.usersApiUrl}`)
+      .get(`${endpoints.realtimeApiUrl}`)
       .then(res => {})
       .catch(err => console.log(`Error: ${err}`));
   }
 
-  async fetchHistoricalData(queryParams: string) {
+  async fetchRealTimeData() {
     await axios
-      .get(`${endpoints.historicalApiUrl}${this.state.state}${queryParams}`)
+      .get(`${endpoints.realtimeApiUrl}${this.state.state}`)
       .then(res => {
         let response = normalize(res.data);
 
@@ -54,27 +43,9 @@ class Ocelot extends Component {
       .catch(err => console.log(`Error: ${err}`));
   }
 
-  async componentWillMount() {
-    await this.fetchHistoricalData(this.state.queryParams);
+  async componentDidMount() {
+    await this.fetchRealTimeData();
   }
-
-  handleDateChange = (date: any) => {
-    const month = format(date, "M");
-    const day = format(date, "dd");
-    const year = format(date, "yyyy");
-    const queryParams = `?year=${year}&month=${month}&day=${day}`;
-
-    this.setState(
-      {
-        tasks: null,
-        date: date,
-        queryParams
-      },
-      () => {
-        this.fetchHistoricalData(queryParams);
-      }
-    );
-  };
 
   handleStateSelectionChange = (event: any) => {
     this.setState(
@@ -83,7 +54,7 @@ class Ocelot extends Component {
         state: event.target.value
       },
       () => {
-        this.fetchHistoricalData(this.state.queryParams);
+        this.fetchRealTimeData();
       }
     );
   };
@@ -91,6 +62,7 @@ class Ocelot extends Component {
   render() {
     return (
       <>
+        <Navigation />
         <div className="page-container">
           <div className="data-container row">
             <div className="col-2 negative-margin-top">
@@ -107,14 +79,6 @@ class Ocelot extends Component {
                   </select>
                 </div>
               </form>
-            </div>
-            <div className="col-2 negative-margin-top">
-              <p className="m-0"> Select a date </p>
-              <Calendar
-                dateFormat="mm/dd/yy"
-                value={this.state.date}
-                onChange={e => this.handleDateChange(e.value)}
-              ></Calendar>
             </div>
           </div>
           {this.state.tasks != null ? (

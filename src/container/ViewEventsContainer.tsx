@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { ProgressBar } from "primereact/progressbar";
-import {isArray} from 'lodash';
+import { isArray } from "lodash";
 
 import endpoints from "../config/endpoints";
 import EventsView from "../components/EventsView/EventsView";
@@ -16,7 +16,7 @@ class ViewEventsContainer extends React.Component<RouteComponentProps<any>> {
     events: null
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.fetchTaskData(this.props.match.params.id);
   }
 
@@ -25,7 +25,7 @@ class ViewEventsContainer extends React.Component<RouteComponentProps<any>> {
       .get(`${endpoints.tasksApiUrl}${taskId}`)
       .then(res => {
         this.setState({
-          events: ( isArray(res.data) ? res.data : null)
+          events: isArray(res.data) ? res.data : null
         });
       })
       .catch(err => console.log(`Error: ${err}`));
