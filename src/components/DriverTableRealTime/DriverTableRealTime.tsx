@@ -1,18 +1,34 @@
 import React from "react";
+
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-
+import Icon from "../Icon/Icon";
 interface Props {
   tasks: any;
   drivers: any;
 }
 
-const DriverTableView = (props: Props) => {
+const cleanName = (name: string) => {
+  if (!name) {
+    return name;
+  }
+
+  const nameArray = name.split(" ");
+
+  return `${nameArray[0]} ${nameArray[1]}`;
+};
+
+const DriverTableRealTime = (props: Props) => {
   const tableData: Array<object> = [];
   const drivers = props.drivers;
   const keys = Object.keys(drivers);
+
+  const assigned = <Icon icon="pi pi-check" />;
+  const scheduled = <Icon icon="pi pi-clock" />;
+  const failed = <Icon icon="pi pi-calendar-times" />;
+  const justsend = <Icon icon="pi pi-arrow-right" />;
 
   const timeslots: Array<string> = [
     "slot4amTo9am",
@@ -26,19 +42,21 @@ const DriverTableView = (props: Props) => {
   // Build Row Data
   keys.forEach((key: any) => {
     let obj = {
-      name: drivers[key].name
+      name: cleanName(drivers[key].name)
     };
 
     let driver = drivers[key];
 
     timeslots.forEach(slot => {
-      obj[slot + "_r"] = driver[slot].completed;
-      obj[slot + "_ua"] = driver[slot].completedOntime;
-      obj[slot + "_d"] = driver[slot].completedLate;
-      obj[slot + "_f"] = (driver[slot].failed !== 0 ? driver[slot].failed : "-")
+      obj[slot + "_r"] = driver[slot].assigned;
+      obj[slot + "_d"] = driver[slot].scheduled;
+      obj[slot + "_f"] = driver[slot].failed;
+      obj[slot + "_ua"] = driver[slot].justSends;
     });
     tableData.push(obj);
   });
+
+  const val = "<i> a sds</i>";
 
   let headerGroup = (
     <ColumnGroup>
@@ -77,35 +95,35 @@ const DriverTableView = (props: Props) => {
       </Row>
 
       <Row>
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
 
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
 
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
 
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
 
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
 
-        <Column header="Done" />
-        <Column header="On Time" />
-        <Column header="Late" />
-        <Column header="Failed" />
+        <Column header={assigned} />
+        <Column header={scheduled} />
+        <Column header={failed} />
+        <Column header={justsend} />
       </Row>
     </ColumnGroup>
   );
@@ -114,10 +132,10 @@ const DriverTableView = (props: Props) => {
     <DataTable value={tableData} headerColumnGroup={headerGroup}>
       <Column field="name" />
 
-      <Column field="slot4amTo9am_r" />
-      <Column field="slot4amTo9am_d" />
-      <Column field="slot4amTo9am_f" />
-      <Column field="slot4amTo9am_ua" />
+      <Column field="slot4amTo9am_r" colSpan={2} />
+      <Column field="slot4amTo9am_d" colSpan={2} />
+      <Column field="slot4amTo9am_f" colSpan={2} />
+      <Column field="slot4amTo9am_ua" colSpan={2} />
 
       <Column field="slot9amTo12pm_r" colSpan={2} />
       <Column field="slot9amTo12pm_d" colSpan={2} />
@@ -147,4 +165,4 @@ const DriverTableView = (props: Props) => {
   );
 };
 
-export default DriverTableView;
+export default DriverTableRealTime;

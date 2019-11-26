@@ -7,11 +7,11 @@ interface Normalize {
 }
 
 const normalize = (response: any) => {
-  let keys = Object.keys(response.tasks);
+  let keys = Object.keys(response.taskData);
   let res: Normalize = {
-    drivers: response.drivers,
+    drivers: response.driverData,
     tasks: {
-      total: response.tasks.dayTotal,
+      total: response.taskData.dayTotal,
       data: []
     }
   };
@@ -20,7 +20,7 @@ const normalize = (response: any) => {
     if (key !== "dayTotal") {
       const data = {
         name: key,
-        ...response.tasks[key]
+        ...response.taskData[key]
       };
       res.tasks.data.push(data);
     }

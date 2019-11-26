@@ -5,8 +5,8 @@ import { ProgressBar } from "primereact/progressbar";
 import { Calendar } from "primereact/calendar";
 
 import Navigation from "../layout/Navigation/Navigation";
-import ZoneTableView from "../components/ZoneTableView/ZoneTableView";
-import DriverTableView from "../components/DriverTableView/DriverTableView";
+import ZoneTable from "../components/ZoneTable/ZoneTable";
+import DriverTable from "../components/DriverTable/DriverTable";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
@@ -123,13 +123,13 @@ class HistoricalContainer extends Component {
             <>
               <div className="page-container__data">
                 <div className="page-container__data-table data-container">
-                  <DriverTableView
+                  <DriverTable
                     tasks={this.state.tasks}
                     drivers={this.state.drivers}
                   />
                 </div>
                 <div className="page-container__data-table data-container">
-                  <ZoneTableView
+                  <ZoneTable
                     tasks={this.state.tasks}
                     drivers={this.state.drivers}
                   />
