@@ -34,13 +34,6 @@ class HistoricalContainer extends Component {
     queryParams: `?year=${defaultDate.year}&month=${defaultDate.month}&day=${defaultDate.day}`
   };
 
-  async fetchUserData() {
-    await axios
-      .get(`${endpoints.usersApiUrl}`)
-      .then(res => {})
-      .catch(err => console.log(`Error: ${err}`));
-  }
-
   async fetchHistoricalData(queryParams: string) {
     await axios
       .get(`${endpoints.historicalApiUrl}${this.state.state}${queryParams}`)
@@ -128,6 +121,7 @@ class HistoricalContainer extends Component {
                     drivers={this.state.drivers}
                   />
                 </div>
+                <br/><br/>
                 <div className="page-container__data-table data-container">
                   <ZoneTable
                     tasks={this.state.tasks}

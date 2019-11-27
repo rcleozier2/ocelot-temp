@@ -3,8 +3,8 @@ import axios from "axios";
 import { ProgressBar } from "primereact/progressbar";
 
 import Navigation from "../layout/Navigation/Navigation";
-import ZoneTable from "../components/ZoneTable/ZoneTable";
-import DriverTableRealTime from "../components/DriverTableRealTime/DriverTableRealTime";
+import ZoneTableRealTime from "../components/ZoneTable/ZoneTableRealTime";
+import DriverTableRealTime from "../components/DriverTable/DriverTableRealTime";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
@@ -14,6 +14,8 @@ interface State {
   state: string;
 }
 
+let intervalId: any = null;
+
 class Ocelot extends Component {
   state: State = {
     tasks: null,
@@ -21,11 +23,20 @@ class Ocelot extends Component {
     state: "newyork"
   };
 
-  async fetchUserData() {
-    await axios
-      .get(`${endpoints.realtimeApiUrl}`)
-      .then(res => {})
-      .catch(err => console.log(`Error: ${err}`));
+  constructor(props: any) {
+    super(props);
+    let intervalTime = 60 * 1000; // Everyminute
+
+    this.fetchRealTimeData = this.fetchRealTimeData.bind(this);
+    intervalId = setInterval(this.fetchRealTimeData, intervalTime);
+  }
+
+  async componentDidMount() {
+    await this.fetchRealTimeData();
+  }
+
+  componentWillReceiveProps() {
+    clearInterval(intervalId);
   }
 
   async fetchRealTimeData() {
@@ -40,10 +51,6 @@ class Ocelot extends Component {
         });
       })
       .catch(err => console.log(`Error: ${err}`));
-  }
-
-  async componentDidMount() {
-    await this.fetchRealTimeData();
   }
 
   handleStateSelectionChange = (event: any) => {
@@ -89,8 +96,10 @@ class Ocelot extends Component {
                     drivers={this.state.drivers}
                   />
                 </div>
+                <br />
+                <br />
                 <div className="page-container__data-table data-container">
-                  <ZoneTable
+                  <ZoneTableRealTime
                     tasks={this.state.tasks}
                     drivers={this.state.drivers}
                   />

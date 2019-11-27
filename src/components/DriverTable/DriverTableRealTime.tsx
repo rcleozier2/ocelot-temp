@@ -3,9 +3,8 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-import { Complete, Failed, JustSend } from "../Icon/TableIcons";
-
-import "./DriverTable.scss";
+import Icon from "../Icon/Icon";
+import { Assigned, Scheduled, Complete } from "../Icon/TableIcons";
 
 interface Props {
   tasks: any;
@@ -13,19 +12,21 @@ interface Props {
 }
 
 const cleanName = (name: string) => {
+  if (!name) {
+    return name;
+  }
   const nameArray = name.split(" ");
-
   return `${nameArray[0]} ${nameArray[1]}`;
 };
 
-const DriverTable = (props: Props) => {
+const DriverTableRealTime = (props: Props) => {
   const tableData: Array<object> = [];
   const drivers = props.drivers;
   const keys = Object.keys(drivers);
 
-  const done = "Done"; //"<Icon icon="pi pi-check" />;"
-  const failed = "Failed"; //<Icon icon="pi pi-calendar-times" />;
-  const justSend = "Sends"; //<Icon icon="pi pi-arrow-right" />;
+  const assigned = "Sche..";
+  const failed = "Assig..";
+  const justSend = "Done";
 
   const timeslots: Array<string> = [
     "slot4amTo9am",
@@ -45,9 +46,9 @@ const DriverTable = (props: Props) => {
     let driver = drivers[key];
 
     timeslots.forEach(slot => {
-      obj[slot + "_1"] = <Complete data={driver[slot]} />;
-      obj[slot + "_2"] = <Failed data={driver[slot]} />;
-      obj[slot + "_3"] = <JustSend data={driver[slot]} />;
+      obj[slot + "_1"] = <Assigned data={driver[slot]} />;
+      obj[slot + "_2"] = <Scheduled data={driver[slot]} />;
+      obj[slot + "_3"] = <Complete data={driver[slot]} />;
     });
     tableData.push(obj);
   });
@@ -89,29 +90,30 @@ const DriverTable = (props: Props) => {
       </Row>
 
       <Row>
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
+
       </Row>
     </ColumnGroup>
   );
@@ -127,32 +129,32 @@ const DriverTable = (props: Props) => {
       >
         <Column field="name" style={{ width: "140px" }} />
 
-        <Column field="slot4amTo9am_1" className="complete" />
-        <Column field="slot4amTo9am_2" className="failed" />
-        <Column field="slot4amTo9am_3" className="send" />
+        <Column field="slot4amTo9am_1" />
+        <Column field="slot4amTo9am_2" />
+        <Column field="slot4amTo9am_3" />
 
-        <Column field="slot9amTo12pm_1" className="complete" colSpan={2} />
-        <Column field="slot9amTo12pm_2" className="failed" colSpan={2} />
-        <Column field="slot9amTo12pm_3" className="send" colSpan={2} />
+        <Column field="slot9amTo12pm_1" />
+        <Column field="slot9amTo12pm_2" />
+        <Column field="slot9amTo12pm_3" />
 
-        <Column field="slot12pmTo3pm_1" className="complete" colSpan={2} />
-        <Column field="slot12pmTo3pm_2" className="failed" colSpan={2} />
-        <Column field="slot12pmTo3pm_3" className="send" colSpan={2} />
+        <Column field="slot12pmTo3pm_1" />
+        <Column field="slot12pmTo3pm_2" />
+        <Column field="slot12pmTo3pm_3" />
 
-        <Column field="slot3pmTo6pm_1" className="complete" colSpan={2} />
-        <Column field="slot3pmTo6pm_2" className="failed" colSpan={2} />
-        <Column field="slot3pmTo6pm_3" className="send" colSpan={2} />
+        <Column field="slot3pmTo6pm_1" />
+        <Column field="slot3pmTo6pm_2" />
+        <Column field="slot3pmTo6pm_3" />
 
-        <Column field="slot6pmTo9pm_1" className="complete" colSpan={2} />
-        <Column field="slot6pmTo9pm_2" className="failed" colSpan={2} />
-        <Column field="slot6pmTo9pm_3" className="send" colSpan={2} />
+        <Column field="slot6pmTo9pm_1" />
+        <Column field="slot6pmTo9pm_2" />
+        <Column field="slot6pmTo9pm_3" />
 
-        <Column field="slot9pmTo4am_1" className="complete" colSpan={2} />
-        <Column field="slot9pmTo4am_2" className="failed" colSpan={2} />
-        <Column field="slot9pmTo4am_3" className="send" colSpan={2} />
+        <Column field="slot9pmTo4am_1" />
+        <Column field="slot9pmTo4am_2" />
+        <Column field="slot9pmTo4am_3" />
       </DataTable>
     </>
   );
 };
 
-export default DriverTable;
+export default DriverTableRealTime;

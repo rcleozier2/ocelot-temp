@@ -1,26 +1,61 @@
 import React from "react";
 
-const Complete = (props: any) => {
+interface Props {
+  data: any;
+}
+
+const Assigned = (props: Props) => {
   return (
     <>
       <p>
-        {props.data.completedOntime} - {props.data.completedLate}
+        {props.data.assigned}
+        {/* {props.data.scheduled > 0 && (
+          <span style={{ color: "green" }}>({props.data.scheduled})</span>
+        )} */}
       </p>
     </>
   );
 };
 
-const Failed = (props: any) => {
+const Scheduled = (props: Props) => {
   return (
     <>
       <p>
-        {props.data.failedOntime} - {props.data.failedLate}
+        {props.data.scheduled}
+  
       </p>
     </>
   );
 };
 
-const JustSend = (props: any) => {
+
+const Complete = (props: Props) => {
+  return (
+    <>
+      <p>
+        {props.data.completed}
+        {props.data.completedLate > 0 && (
+          <span style={{ color: "red" }}>({props.data.completedLate})</span>
+        )}
+      </p>
+    </>
+  );
+};
+
+const Failed = (props: Props) => {
+  return (
+    <>
+      <p>
+        {props.data.failed}
+        {props.data.failedLate > 0 && (
+          <span style={{ color: "red" }}>({props.data.failedLate})</span>
+        )}
+      </p>
+    </>
+  );
+};
+
+const JustSend = (props: Props) => {
   return (
     <>
       <p>{props.data.justSends}</p>
@@ -28,4 +63,4 @@ const JustSend = (props: any) => {
   );
 };
 
-export { Complete, Failed, JustSend };
+export { Assigned, Complete, Scheduled, Failed, JustSend };

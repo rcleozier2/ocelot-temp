@@ -3,7 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-import { Complete, Failed, JustSend } from "../Icon/TableIcons";
+import { Assigned, Scheduled, Complete } from "../Icon/TableIcons";
 
 interface Tasks {
   [key: string]: any;
@@ -18,9 +18,9 @@ const ZoneTableView = (props: Props) => {
   const tableData: Array<object> = [];
   const tasks = props.tasks;
 
-  const done = "Done"; //"<Icon icon="pi pi-check" />;"
-  const failed = "Failed"; //<Icon icon="pi pi-calendar-times" />;
-  const justSend = "Sends"; //<Icon icon="pi pi-arrow-right" />;
+  const assigned = "Sche..";
+  const failed = "Assig..";
+  const justSend = "Done";
 
   const timeslots: Array<string> = [
     "slot4amTo9am",
@@ -38,9 +38,9 @@ const ZoneTableView = (props: Props) => {
     };
 
     timeslots.forEach(slot => {
-      obj[slot + "_1"] = <Complete data={task[slot]} />;
-      obj[slot + "_2"] = <Failed data={task[slot]} />;
-      obj[slot + "_3"] = <JustSend data={task[slot]} />;
+      obj[slot + "_1"] = <Assigned data={task[slot]} />;
+      obj[slot + "_2"] = <Scheduled data={task[slot]} />;
+      obj[slot + "_3"] = <Complete data={task[slot]} />;
     });
     tableData.push(obj);
   });
@@ -82,27 +82,27 @@ const ZoneTableView = (props: Props) => {
       </Row>
 
       <Row>
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
 
-        <Column header={done} />
+        <Column header={assigned} />
         <Column header={failed} />
         <Column header={justSend} />
       </Row>
@@ -115,29 +115,29 @@ const ZoneTableView = (props: Props) => {
       <DataTable value={tableData} headerColumnGroup={headerGroup}>
         <Column field="name" />
 
-        <Column field="slot4amTo9am_1" className="complete" />
-        <Column field="slot4amTo9am_2" className="failed" />
-        <Column field="slot4amTo9am_3" className="send" />
+        <Column field="slot4amTo9am_1" className="scheduled" />
+        <Column field="slot4amTo9am_2" className="assigned" />
+        <Column field="slot4amTo9am_3" className="complete" />
 
-        <Column field="slot9amTo12pm_1" className="complete" colSpan={2} />
-        <Column field="slot9amTo12pm_2" className="failed" colSpan={2} />
-        <Column field="slot9amTo12pm_3" className="send" colSpan={2} />
+        <Column field="slot9amTo12pm_1" className="scheduled" />
+        <Column field="slot9amTo12pm_2" className="assigned" />
+        <Column field="slot9amTo12pm_3" className="complete" />
 
-        <Column field="slot12pmTo3pm_1" className="complete" colSpan={2} />
-        <Column field="slot12pmTo3pm_2" className="failed" colSpan={2} />
-        <Column field="slot12pmTo3pm_3" className="send" colSpan={2} />
+        <Column field="slot12pmTo3pm_1" className="scheduled" />
+        <Column field="slot12pmTo3pm_2" className="assigned" />
+        <Column field="slot12pmTo3pm_3" className="complete" />
 
-        <Column field="slot3pmTo6pm_1" className="complete" colSpan={2} />
-        <Column field="slot3pmTo6pm_2" className="failed" colSpan={2} />
-        <Column field="slot3pmTo6pm_3" className="send" colSpan={2} />
+        <Column field="slot3pmTo6pm_1" className="scheduled" />
+        <Column field="slot3pmTo6pm_2" className="assigned" />
+        <Column field="slot3pmTo6pm_3" className="complete" />
 
-        <Column field="slot6pmTo9pm_1" className="complete" colSpan={2} />
-        <Column field="slot6pmTo9pm_2" className="failed" colSpan={2} />
-        <Column field="slot6pmTo9pm_3" className="send" colSpan={2} />
+        <Column field="slot6pmTo9pm_1" className="scheduled" />
+        <Column field="slot6pmTo9pm_2" className="faassignediled" />
+        <Column field="slot6pmTo9pm_3" className="complete" />
 
-        <Column field="slot9pmTo4am_1" className="complete" colSpan={2} />
-        <Column field="slot9pmTo4am_2" className="failed" colSpan={2} />
-        <Column field="slot9pmTo4am_3" className="send" colSpan={2} />
+        <Column field="slot9pmTo4am_1" className="scheduled" />
+        <Column field="slot9pmTo4am_2" className="assigned" />
+        <Column field="slot9pmTo4am_3" className="complete" />
       </DataTable>
     </>
   );
