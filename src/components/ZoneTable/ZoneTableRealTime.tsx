@@ -14,7 +14,7 @@ interface Props {
   drivers: any;
 }
 
-const ZoneTableView = (props: Props) => {
+const ZoneTableRealTime = (props: Props) => {
   const tableData: Array<object> = [];
   const tasks = props.tasks;
 
@@ -143,4 +143,4 @@ const ZoneTableView = (props: Props) => {
   );
 };
 
-export default ZoneTableView;
+export default ZoneTableRealTime;

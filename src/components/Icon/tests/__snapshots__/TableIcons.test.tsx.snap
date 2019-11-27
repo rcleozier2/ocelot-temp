@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `<p />`;
+
+exports[`renders correctly 2`] = `
+<p>
+  2
+  <span
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    (
+    3
+    )
+  </span>
+</p>
+`;
+
+exports[`renders correctly 3`] = `
+<p>
+  1
+</p>
+`;
+
+exports[`renders correctly 4`] = `
+<p>
+  2
+  <span
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    (
+    2
+    )
+  </span>
+</p>
+`;
+
+exports[`renders correctly 5`] = `
+<p>
+  5
+</p>
+`;

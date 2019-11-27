@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<i
+  className="pi pi-thumbs-up"
+/>
+`;
+
+exports[`renders correctly with different icon 1`] = `
+<i
+  className="pi pi-thumbs-down"
+/>
+`;

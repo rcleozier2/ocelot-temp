@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-import Icon from "../Icon/Icon";
 import { Assigned, Scheduled, Complete } from "../Icon/TableIcons";
 
 interface Props {

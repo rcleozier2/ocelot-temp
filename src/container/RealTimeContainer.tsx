@@ -25,7 +25,7 @@ class Ocelot extends Component {
 
   constructor(props: any) {
     super(props);
-    let intervalTime = 60 * 1000; // Everyminute
+    let intervalTime = 60 * 1000; // Every minute
 
     this.fetchRealTimeData = this.fetchRealTimeData.bind(this);
     intervalId = setInterval(this.fetchRealTimeData, intervalTime);

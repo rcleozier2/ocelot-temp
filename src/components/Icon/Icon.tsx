@@ -1,7 +1,7 @@
 import React from "react";
 
 const Icon = (props: any) => {
-  return <li className={props.icon} > {props.children}</li>;
+  return <i className={props.icon} />;
 };
 
 export default Icon;
