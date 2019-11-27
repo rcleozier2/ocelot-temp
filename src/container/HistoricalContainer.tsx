@@ -7,6 +7,9 @@ import { Calendar } from "primereact/calendar";
 import Navigation from "../layout/Navigation/Navigation";
 import ZoneTable from "../components/ZoneTable/ZoneTable";
 import DriverTable from "../components/DriverTable/DriverTable";
+import DeliverySummary from "../components/DeliverySummary/DeliverySummary";
+import DeliveryChart from "../components/Charts/DeliveryChart";
+import DeliveryStats from "../components/DeliveryStats/DeliveryStats";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
@@ -114,6 +117,19 @@ class HistoricalContainer extends Component {
           </div>
           {this.state.tasks != null ? (
             <>
+            <br/>
+              <div className="row">
+                  <div className="col-3"> 
+                    <DeliverySummary tasks={this.state.tasks}/>
+                   </div>
+                   <div className="col-3"> 
+                    <DeliveryStats tasks={this.state.tasks}/>
+                   </div>
+                  <div className="col-3"> 
+                    <DeliveryChart tasks={this.state.tasks} />
+                  </div>
+              </div>
+              <br/><br/>
               <div className="page-container__data">
                 <div className="page-container__data-table data-container">
                   <DriverTable

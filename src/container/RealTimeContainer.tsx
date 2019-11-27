@@ -5,6 +5,9 @@ import { ProgressBar } from "primereact/progressbar";
 import Navigation from "../layout/Navigation/Navigation";
 import ZoneTableRealTime from "../components/ZoneTable/ZoneTableRealTime";
 import DriverTableRealTime from "../components/DriverTable/DriverTableRealTime";
+import DeliverySummary from "../components/DeliverySummary/DeliverySummary";
+import DeliveryChart from "../components/Charts/DeliveryChart";
+import DeliveryStats from "../components/DeliveryStats/DeliveryStats";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
 
@@ -89,6 +92,20 @@ class Ocelot extends Component {
           </div>
           {this.state.tasks != null ? (
             <>
+              <br />
+              <div className="row">
+                  <div className="col-3"> 
+                    <DeliverySummary tasks={this.state.tasks}/>
+                   </div>
+                   <div className="col-3"> 
+                    <DeliveryStats tasks={this.state.tasks}/>
+                   </div>
+                  <div className="col-3"> 
+                    <DeliveryChart tasks={this.state.tasks} />
+                  </div>
+              </div>
+              <br />
+              <br />
               <div className="page-container__data">
                 <div className="page-container__data-table data-container">
                   <DriverTableRealTime

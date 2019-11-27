@@ -1,0 +1,18 @@
+@import "../../App-Variables.scss";
+
+.delivery-stats {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #eee;
+    text-align: center;
+    justify-content: center;
+    filter: drop-shadow(2px 2px 4px #dedede);
+    min-height: 250px;
+    height: auto;
+    overflow: hidden;
+
+    &-text {
+        font-size: 13px;
+        text-align: left;
+    }
+}

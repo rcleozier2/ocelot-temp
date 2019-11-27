@@ -1,0 +1,11 @@
+@import "../../App-Variables.scss";
+
+.delivery-chart {
+    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #eee;
+    text-align: center;
+    justify-content: center;
+    filter: drop-shadow(2px 2px 4px #dedede);
+    height: 250px;
+}

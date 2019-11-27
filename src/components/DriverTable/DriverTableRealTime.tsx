@@ -64,22 +64,22 @@ const DriverTableRealTime = (props: Props) => {
         <Column
           header="9AM-Noon"
           colSpan={3}
-          style={{ backgroundColor: "#6ba3e5" }}
+          style={{ backgroundColor: "#F4F4F4" }}
         />
         <Column
           header="Noon-3PM"
           colSpan={3}
-          style={{ backgroundColor: "#6ba3e5" }}
+          style={{ backgroundColor: "#F4F4F4" }}
         />
         <Column
           header="3PM-6PM"
           colSpan={3}
-          style={{ backgroundColor: "#6ba3e5" }}
+          style={{ backgroundColor: "#F4F4F4" }}
         />
         <Column
           header="6PM-9PM"
           colSpan={3}
-          style={{ backgroundColor: "#6ba3e5" }}
+          style={{ backgroundColor: "#F4F4F4" }}
         />
         <Column
           header="9PM-4AM"
@@ -119,7 +119,6 @@ const DriverTableRealTime = (props: Props) => {
 
   return (
     <>
-      <h3> Driver Data</h3>
       <DataTable
         value={tableData}
         headerColumnGroup={headerGroup}

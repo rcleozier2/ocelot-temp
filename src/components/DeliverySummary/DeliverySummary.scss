@@ -1,0 +1,23 @@
+@import "../../App-Variables.scss";
+
+.delivery-summary {
+    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #eee;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(2px 2px 4px #dedede);
+    min-height: 250px;
+
+    &-stats {
+        font-size: 32px;
+        color: $medly-blue;
+        text-decoration: underline;
+    }
+
+    &-percentage {
+        font-size: 20px;
+        color: $medly-green;
+    }
+}
