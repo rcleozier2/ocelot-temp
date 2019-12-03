@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders DeliveryStats correctly 1`] = `
+<div
+  className="delivery-stats"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-12"
+    >
+      <p
+        className="delivery-stats-text"
+      >
+        Completed On Time (
+        2
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Completed Late (
+        3
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Total Completed (
+        5
+        )
+      </p>
+      <hr />
+      <p
+        className="delivery-stats-text"
+      >
+        Failed On Time (
+        2
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Failed Late (
+        2
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Total Failed (
+        4
+        )
+      </p>
+      <hr />
+      <p
+        className="delivery-stats-text"
+      >
+        Total Scheduled (
+        9
+        )
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders DeliveryStats correctly with new props 1`] = `
+<div
+  className="delivery-stats"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-12"
+    >
+      <p
+        className="delivery-stats-text"
+      >
+        Completed On Time (
+        12
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Completed Late (
+        13
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Total Completed (
+        15
+        )
+      </p>
+      <hr />
+      <p
+        className="delivery-stats-text"
+      >
+        Failed On Time (
+        12
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Failed Late (
+        12
+        )
+      </p>
+      <p
+        className="delivery-stats-text"
+      >
+        Total Failed (
+        14
+        )
+      </p>
+      <hr />
+      <p
+        className="delivery-stats-text"
+      >
+        Total Scheduled (
+        29
+        )
+      </p>
+    </div>
+  </div>
+</div>
+`;
