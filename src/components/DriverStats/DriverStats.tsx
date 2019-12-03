@@ -10,7 +10,6 @@ const DriverStats = (props: any) => {
   const drivers = props.drivers;
   const tableData: any = [];
 
- 
 
   Object.keys(drivers).forEach((key: any) => {
     drivers[key].totalTime = differenceInHours(drivers[key].endShift, drivers[key].startShift) + " Hours"
@@ -41,8 +40,6 @@ const DriverStats = (props: any) => {
       <DataTable
         value={tableData}
         headerColumnGroup={headerGroup}
-        scrollable={true}
-        scrollHeight="500px"
       >
         <Column field="name" />
         <Column field="startShift" />

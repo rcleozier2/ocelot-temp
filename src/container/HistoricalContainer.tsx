@@ -3,6 +3,7 @@ import axios from "axios";
 import { format, startOfYesterday } from "date-fns";
 import { ProgressBar } from "primereact/progressbar";
 import { Calendar } from "primereact/calendar";
+import { Tabs, Tab } from "react-bootstrap";
 
 import Navigation from "../layout/Navigation/Navigation";
 import ZoneTable from "../components/ZoneTable/ZoneTable";
@@ -135,32 +136,39 @@ class HistoricalContainer extends Component {
               </div>
               <br />
               <div className="row">
-              <div className="col-12">
-                  <DriverStats drivers={this.state.drivers} />
+                <div className="col-12">
+                  <Tabs
+                    defaultActiveKey="driverstats"
+                    id="data"
+                    variant="pills"
+                  >
+                    <Tab eventKey="driverstats" title="Driver Stats">
+                      <br />
+                      <DriverStats drivers={this.state.drivers} />
+                    </Tab>
+
+                    <Tab eventKey="driverdata" title="Driver Capacity Grid">
+                      <br />
+                      <DriverTable
+                        tasks={this.state.tasks}
+                        drivers={this.state.drivers}
+                      />
+                    </Tab>
+
+                    <Tab eventKey="zonedata" title="Zone Capacity Grid">
+                      <br />
+                      <ZoneTable
+                        tasks={this.state.tasks}
+                        drivers={this.state.drivers}
+                      />
+                    </Tab>
+
+                    <Tab eventKey="eventsdata" title="All Tasks">
+                      <br />
+                      <EventsTable tasks={this.state.tasks} />
+                    </Tab>
+                  </Tabs>
                 </div>
-                {/* <div className="col-5">
-                    <EventsTable tasks={this.state.tasks} />
-                  </div> */}
-              </div>
-              <br />
-              <div className="page-container__data">
-                <div className="page-container__data-table data-container">
-                  <DriverTable
-                    tasks={this.state.tasks}
-                    drivers={this.state.drivers}
-                  />
-                </div>
-                <br />
-                <br />
-                <div className="page-container__data-table data-container">
-                  <ZoneTable
-                    tasks={this.state.tasks}
-                    drivers={this.state.drivers}
-                  />
-                </div>
-                <br />
-                <br />
-             
               </div>
             </>
           ) : (

@@ -5,8 +5,6 @@ import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 import { Link } from "react-router-dom";
 
-//import "./EventsTable.scss";
-
 const buildLink = (taskId: string) => {
   return (
     <Link to={`view/task/${taskId}`} target="_blank">
@@ -24,7 +22,6 @@ const EventsTable = (props: any) => {
   };
 
   // Build Row Data
-
   Object.keys(tableDataKeys).forEach((key: any) => {
     tasks[key].forEach((task: any) => {
       task.link = buildLink(task.taskId);
@@ -32,8 +29,6 @@ const EventsTable = (props: any) => {
       tableData.push(task);
     });
   });
-
-
 
   const headerGroup = (
     <ColumnGroup>
@@ -46,7 +41,6 @@ const EventsTable = (props: any) => {
   );
 
   return (
-    <>
       <DataTable
         value={tableData}
         headerColumnGroup={headerGroup}
@@ -57,7 +51,6 @@ const EventsTable = (props: any) => {
         <Column field="status" />
         <Column field="link" />
       </DataTable>
-    </>
   );
 };
 
