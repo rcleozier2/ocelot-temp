@@ -52,7 +52,7 @@ const ZoneTableView = (props: Props) => {
         <Column
           header="4AM - 9AM"
           colSpan={3}
-          style={{ backgroundColor: "#FFCA58" }}
+          style={{ backgroundColor: "#F0E5D1" }}
         />
         <Column
           header="9AM-Noon"
@@ -77,7 +77,7 @@ const ZoneTableView = (props: Props) => {
         <Column
           header="9PM-4AM"
           colSpan={3}
-          style={{ backgroundColor: "#FFCA58" }}
+          style={{ backgroundColor: "#F0E5D1" }}
         />
       </Row>
 

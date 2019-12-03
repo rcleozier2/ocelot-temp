@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/google-maps-react": "^2.0.3",
     "@types/jest": "^24.0.23",
     "@types/jwt-decode": "^2.2.1",
     "@types/lodash": "^4.14.149",
@@ -21,6 +22,7 @@
     "browser-sync": "^2.24.4",
     "chart.js": "^2.9.2",
     "date-fns": "^2.7.0",
+    "google-maps-react": "^2.0.2",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
     "primeicons": "^2.0.0",

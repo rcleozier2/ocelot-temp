@@ -9,19 +9,29 @@ const DeliveryStats = (props: any) => {
         <div className="row">
           <div className="col-12">
             <p className="delivery-stats-text">
-              Completed On Time ({props.tasks.total.completedOntime}) <br />
+              Completed On Time ({props.tasks.total.completedOntime}) 
+            </p>
+            <p className="delivery-stats-text">
               Completed Late ({props.tasks.total.completedLate})
-              <br />
-              Total Completed ({props.tasks.total.completed})
-              <br />
-              <hr />
+            </p>
+            <hr/>
+            <p className="delivery-stats-text"> 
+                Total Completed ({props.tasks.total.completed})
+             </p>
+             <p className="delivery-stats-text">
                Failed On Time ({props.tasks.total.failedOntime})
-              <br />
+             </p>
+             <p className="delivery-stats-text">
               Failed Late ({props.tasks.total.failedLate})
-              <br />
+             </p>
+
+             <p className="delivery-stats-text">
+
               Total  Failed ({props.tasks.total.failed})
+             </p>
+             <hr/>
             
-              <hr />
+             <p className="delivery-stats-text">
               Total Scheduled ( {props.tasks.total.scheduled})
             </p>
           </div>
