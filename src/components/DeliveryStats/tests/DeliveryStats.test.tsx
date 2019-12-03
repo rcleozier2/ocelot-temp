@@ -12,7 +12,8 @@ it("renders DeliveryStats correctly", () => {
             failedOntime: 2,
             failedLate: 2,
             failed: 4,
-            scheduled: 9
+            scheduled: 9,
+            justSends: 4
         }
     }
   }
@@ -32,7 +33,8 @@ it("renders DeliveryStats correctly with new props", () => {
               failedOntime: 12,
               failedLate: 12,
               failed: 14,
-              scheduled: 29
+              scheduled: 29,
+              justSends: 4
           }
       }
     }

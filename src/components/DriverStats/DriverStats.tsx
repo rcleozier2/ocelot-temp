@@ -11,16 +11,18 @@ const DriverStats = (props: any) => {
   const tableData: any = [];
 
   Object.keys(drivers).forEach((key: any) => {
+    console.log({drivers});
     drivers[key].name = cleanName(drivers[key].name);
     drivers[key].totalTime = formatDistance(
-      drivers[key].endShift,
-      drivers[key].startShift
+      new Date(drivers[key].endShift),
+      new Date(drivers[key].startShift)
     );
     drivers[key].startShift = format(
-      drivers[key].startShift,
+      new Date(drivers[key].startShift),
       "MM/dd/yyyy h:mm a"
     );
-    drivers[key].endShift = format(drivers[key].endShift, "MM/dd/yyyy h:mm a");
+    drivers[key].endShift = format(
+      new Date(drivers[key].endShift), "MM/dd/yyyy h:mm a");
 
     tableData.push(drivers[key]);
   });

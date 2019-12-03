@@ -19,6 +19,7 @@ import DriverStats from "../components/DriverStats/DriverStats";
 interface State {
   tasks: any;
   drivers: null | Array<any>;
+  today: Date;
   date: Date;
   state: string;
   queryParams: string;
@@ -30,11 +31,13 @@ const defaultDate = {
   day: format(yesterday, "dd"),
   year: format(yesterday, "yyyy")
 };
+const today= new Date();
 
 class HistoricalContainer extends Component {
   state: State = {
     tasks: null,
     drivers: null,
+    today,
     date: yesterday,
     state: "newyork",
     queryParams: `?year=${defaultDate.year}&month=${defaultDate.month}&day=${defaultDate.day}`
@@ -114,6 +117,7 @@ class HistoricalContainer extends Component {
               <Calendar
                 dateFormat="mm/dd/yy"
                 value={this.state.date}
+                maxDate={this.state.today}
                 onChange={e => this.handleDateChange(e.value)}
               ></Calendar>
             </div>

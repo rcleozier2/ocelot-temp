@@ -31,7 +31,7 @@ const DeliveryStats = (props: any) => {
             <hr />
 
             <p className="delivery-stats-text">
-              Total Scheduled ({props.tasks.total.scheduled})
+              Just Sends ({props.tasks.total.justSends})
             </p>
           </div>
         </div>
