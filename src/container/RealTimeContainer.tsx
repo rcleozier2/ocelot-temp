@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { ProgressBar } from "primereact/progressbar";
+import { Tabs, Tab } from "react-bootstrap";
 
 import Navigation from "../layout/Navigation/Navigation";
 import ZoneTableRealTime from "../components/ZoneTable/ZoneTableRealTime";
@@ -10,6 +11,7 @@ import DeliveryChart from "../components/Charts/DeliveryChart";
 import DeliveryStats from "../components/DeliveryStats/DeliveryStats";
 import endpoints from "../config/endpoints";
 import normalize from "../helpers/normalize";
+import DriverStatsRealTime from "../components/DriverStats/DriverStatsRealTime";
 
 interface State {
   tasks: any;
@@ -105,24 +107,39 @@ class Ocelot extends Component {
                   </div>
               </div>
               <br />
+
               <br />
-              <div className="page-container__data">
-                <div className="page-container__data-table data-container">
-                  <DriverTableRealTime
-                    tasks={this.state.tasks}
-                    drivers={this.state.drivers}
-                  />
+              <div className="row">
+                <div className="col-12">
+                  <Tabs
+                    defaultActiveKey="driverstats"
+                    id="data"
+                    variant="pills"
+                  >
+                    <Tab eventKey="driverstats" title="Driver Stats">
+                      <br />
+                      <DriverStatsRealTime drivers={this.state.drivers} />
+                    </Tab>
+
+                    <Tab eventKey="driverdata" title="Driver Capacity Grid">
+                      <br />
+                      <DriverTableRealTime
+                        tasks={this.state.tasks}
+                        drivers={this.state.drivers}
+                      />
+                    </Tab>
+
+                    <Tab eventKey="zonedata" title="Zone Capacity Grid">
+                      <br />
+                      <ZoneTableRealTime
+                        tasks={this.state.tasks}
+                        drivers={this.state.drivers}
+                      />
+                    </Tab>
+
+                
+                  </Tabs>
                 </div>
-                <br />
-                <br />
-                <div className="page-container__data-table data-container">
-                  <ZoneTableRealTime
-                    tasks={this.state.tasks}
-                    drivers={this.state.drivers}
-                  />
-                </div>
-                <br />
-                <br />
               </div>
             </>
           ) : (

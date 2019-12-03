@@ -122,8 +122,7 @@ const DriverTableRealTime = (props: Props) => {
       <DataTable
         value={tableData}
         headerColumnGroup={headerGroup}
-        scrollable={true}
-        scrollHeight="500px"
+
       >
         <Column field="name" style={{ width: "140px" }} />
 
