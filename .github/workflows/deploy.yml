@@ -9,7 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run npm install
-      run: npm install
-    - name: Run unit test
-      run: npm test
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm test
