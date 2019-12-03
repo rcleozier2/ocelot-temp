@@ -18,9 +18,9 @@ const ZoneTableView = (props: Props) => {
   const tableData: Array<object> = [];
   const tasks = props.tasks;
 
-  const done = "Done"; //"<Icon icon="pi pi-check" />;"
-  const failed = "Failed"; //<Icon icon="pi pi-calendar-times" />;
-  const justSend = "Sends"; //<Icon icon="pi pi-arrow-right" />;
+  const done = "Done";
+  const failed = "Failed"; 
+  const justSend = "Sends"; 
 
   const timeslots: Array<string> = [
     "slot4amTo9am",

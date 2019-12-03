@@ -23,8 +23,8 @@ const DeliveryChart = (props: Props) => {
   const backgroundColor: Array<string> = ["#00873D", "#FF4040", "#00739D"];
 
   const options: Options = {
-    height: "100",
-    width: "100"
+    height: "150",
+    width: "150"
   };
 
   const data = {
@@ -39,7 +39,7 @@ const DeliveryChart = (props: Props) => {
   };
 
   return (
-    <div style={{ width: 400 }} className="delivery-chart">
+    <div style={{ width: 500 }} className="delivery-chart">
       <Chart type="pie" data={data} options={options} />
     </div>
   );
