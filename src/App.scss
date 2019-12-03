@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Mandali&display=swap");
 @import "App-Variables.scss";
 
 html {
@@ -27,21 +28,6 @@ body {
     &-chart {
       flex-basis: 45%;
     }
-  }
-}
-
-.data-container {
-  border-radius: 5px;
-  background-color: #fff;
-  padding: 5px;
-  margin-bottom: 5px;
-
-  &-half {
-    flex-basis: 50%;
-    margin-right: 10px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
   }
 }
 

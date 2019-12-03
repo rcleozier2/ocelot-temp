@@ -93,7 +93,7 @@ class HistoricalContainer extends Component {
       <>
         <Navigation />
         <div className="page-container">
-          <div className="data-container row">
+          <div className="row">
             <div className="col-2 negative-margin-top">
               <p className="m-0"> Select a state </p>
               <form>
