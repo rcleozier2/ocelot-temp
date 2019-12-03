@@ -1,28 +1,23 @@
 import React from "react";
-import { format, differenceInHours } from "date-fns";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-
+import cleanName from "../../helpers/clean-name";
 
 const DriverStatsRealTime = (props: any) => {
   const drivers = props.drivers;
   const tableData: any = [];
 
-
   Object.keys(drivers).forEach((key: any) => {
-
-      tableData.push(drivers[key]);    
+    drivers[key].name = cleanName(drivers[key].name);
+    tableData.push(drivers[key]);
   });
-
-
 
   const headerGroup = (
     <ColumnGroup>
       <Row>
         <Column header="Driver" />
-    
         <Column header="Completed" />
         <Column header="Failed" />
         <Column header="Total Scheduled" />
@@ -32,12 +27,8 @@ const DriverStatsRealTime = (props: any) => {
 
   return (
     <>
-      <DataTable
-        value={tableData}
-        headerColumnGroup={headerGroup}
-      >
+      <DataTable value={tableData} headerColumnGroup={headerGroup}>
         <Column field="name" />
-
         <Column field="total.completed" />
         <Column field="total.failed" />
         <Column field="total.scheduled" />

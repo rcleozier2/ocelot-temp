@@ -33,7 +33,7 @@ const EventsTable = (props: any) => {
   const headerGroup = (
     <ColumnGroup>
       <Row>
-        <Column header="Driver" />
+        <Column header="Completed By" />
         <Column header="Status" />
         <Column header="View Details" />
       </Row>

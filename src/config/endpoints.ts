@@ -8,7 +8,7 @@ interface Endpoints {
 
 const endpoints: Endpoints = {
   usersApiUrl: "https://www.medly.link/v1/onfleet/users",
-  realtimeApiUrl: "https://tech.medly.link/v1/onfleet/capacity/getrealtime/",
+  realtimeApiUrl: "https://www.medly.link/v1/onfleet/capacity/getrealtime/",
   historicalApiUrl: "https://www.medly.link/v1/onfleet/capacity/getHistorical/",
   tasksApiUrl: "https://www.medly.link/v1/onfleet/task/",
   zipcodeSearchApi: "https://www.medly.link/v1/zip/"

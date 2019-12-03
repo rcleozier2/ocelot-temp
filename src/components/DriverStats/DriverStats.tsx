@@ -1,25 +1,29 @@
 import React from "react";
-import { format, differenceInHours } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
-
+import cleanName from "../../helpers/clean-name";
 
 const DriverStats = (props: any) => {
   const drivers = props.drivers;
   const tableData: any = [];
 
-
   Object.keys(drivers).forEach((key: any) => {
-    drivers[key].totalTime = differenceInHours(drivers[key].endShift, drivers[key].startShift) + " Hours"
-    drivers[key].startShift = format(drivers[key].startShift, "MM/dd/yyyy h:mm a");
+    drivers[key].name = cleanName(drivers[key].name);
+    drivers[key].totalTime = formatDistance(
+      drivers[key].endShift,
+      drivers[key].startShift
+    );
+    drivers[key].startShift = format(
+      drivers[key].startShift,
+      "MM/dd/yyyy h:mm a"
+    );
     drivers[key].endShift = format(drivers[key].endShift, "MM/dd/yyyy h:mm a");
 
-      tableData.push(drivers[key]);    
+    tableData.push(drivers[key]);
   });
-
-
 
   const headerGroup = (
     <ColumnGroup>
@@ -37,10 +41,7 @@ const DriverStats = (props: any) => {
 
   return (
     <>
-      <DataTable
-        value={tableData}
-        headerColumnGroup={headerGroup}
-      >
+      <DataTable value={tableData} headerColumnGroup={headerGroup}>
         <Column field="name" />
         <Column field="startShift" />
         <Column field="endShift" />

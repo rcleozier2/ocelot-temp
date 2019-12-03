@@ -4,19 +4,12 @@ import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
 import { Assigned, Scheduled, Complete } from "../Icon/TableIcons";
+import cleanName from "../../helpers/clean-name";
 
 interface Props {
   tasks: any;
   drivers: any;
 }
-
-const cleanName = (name: string) => {
-  if (!name) {
-    return name;
-  }
-  const nameArray = name.split(" ");
-  return `${nameArray[0]} ${nameArray[1]}`;
-};
 
 const DriverTableRealTime = (props: Props) => {
   const tableData: Array<object> = [];

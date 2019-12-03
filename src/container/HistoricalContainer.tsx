@@ -164,8 +164,10 @@ class HistoricalContainer extends Component {
                     </Tab>
 
                     <Tab eventKey="eventsdata" title="All Tasks">
-                      <br />
-                      <EventsTable tasks={this.state.tasks} />
+                    <br />
+                      <div className="col-11">
+                        <EventsTable tasks={this.state.tasks} />
+                      </div>
                     </Tab>
                   </Tabs>
                 </div>
