@@ -39,4 +39,3 @@ jobs:
         source: build/
         target: "/home/build/site/pharmOS/ocelot-staging/"
         strip_components: 1
-

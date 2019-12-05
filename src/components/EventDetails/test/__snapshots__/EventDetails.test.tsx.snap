@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EventDetails correctly for completed task 1`] = `
+Array [
+  <p
+    className="summary-container-title"
+  >
+    <span>
+      <i
+        className="pi pi-check icon icon-green"
+      />
+      Successful
+    </span>
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-directions icon-small"
+    />
+     
+    <span>
+      Driver: 
+    </span>
+    Driver 1
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-user icon-small"
+    />
+     
+    <span>
+      Admin: 
+    </span>
+    Medly Admin
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    Name
+     
+    <br />
+    1
+     
+    110 Street
+     
+    <br />
+    Brooklyn
+    , 
+    New York
+     
+    11101
+     
+    <br />
+    +212-122-2232
+     
+    <br />
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Delivery Window 
+    </span>
+    01/19/1970 12:39 AM
+     - 
+    01/19/1970 12:39 AM
+    <p
+      className="summary-notes-time m-0"
+    >
+       by
+       
+      23
+       Minutes
+       
+    </p>
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Estimated Arrival Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Actual Arrival Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <p
+    className="summary-notes-notice m-0"
+  >
+     by Onfleets estimate by
+     
+    10
+     Minutes
+     
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Actual Completed Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <hr />,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Task Notes:
+    </p>
+    <span
+      className="className"
+    >
+      task notes
+    </span>
+  </div>,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Recipient Notes:
+    </p>
+    <span
+      className="className"
+    >
+      recipients note
+    </span>
+  </div>,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Driver Notes: 
+    </p>
+    <span>
+       
+      driver notes
+    </span>
+  </div>,
+]
+`;
+
+exports[`renders EventDetails correctly for failed task 1`] = `
+Array [
+  <p
+    className="summary-container-title"
+  >
+    <span>
+      <i
+        className="pi pi-exclamation-triangle icon icon-red"
+      />
+      Failed
+    </span>
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-directions icon-small"
+    />
+     
+    <span>
+      Driver: 
+    </span>
+    Driver 2
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-user icon-small"
+    />
+     
+    <span>
+      Admin: 
+    </span>
+    Medly Admin
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    Name
+     
+    <br />
+    1
+     
+    115 Street
+     
+    <br />
+    Brooklyn
+    , 
+    New York
+     
+    11100
+     
+    <br />
+    +212-122-2232
+     
+    <br />
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Delivery Window 
+    </span>
+    01/19/1970 12:39 AM
+     - 
+    01/19/1970 12:39 AM
+    <p
+      className="summary-notes-time m-0"
+    >
+       by
+       
+      23
+       Minutes
+       
+    </p>
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Estimated Arrival Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Actual Arrival Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <p
+    className="summary-notes-notice m-0"
+  >
+     by Onfleets estimate by
+     
+    10
+     Minutes
+     
+  </p>,
+  <hr />,
+  <p
+    className="summary-text m-0"
+  >
+    <i
+      className="pi pi-clock icon-small"
+    />
+     
+    <span>
+      Actual Completed Time:
+    </span>
+    01/19/1970 12:39 AM
+  </p>,
+  <hr />,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Task Notes:
+    </p>
+    <span
+      className="className"
+    >
+      task notes
+    </span>
+  </div>,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Recipient Notes:
+    </p>
+    <span
+      className="className"
+    >
+      recipients note
+    </span>
+  </div>,
+  <div
+    className="summary-notes"
+  >
+    <p>
+      Driver Notes: 
+    </p>
+    <span>
+       
+      driver notes
+    </span>
+  </div>,
+]
+`;
