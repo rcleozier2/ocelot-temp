@@ -25,6 +25,7 @@ jobs:
         command: |
           rm -rf /home/build/site/pharmOS/ocelot-staging/*
           ls -a /home/build/site/pharmOS/ocelot-staging/
+          exit
         host: ${{ secrets.HOST }}
         user: ubuntu
         key: ${{ secrets.PRIVATE_KEY}}
