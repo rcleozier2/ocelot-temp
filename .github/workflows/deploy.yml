@@ -31,6 +31,7 @@ jobs:
       with:
         source: build/
         target: "/home/build/site/pharmOS/ocelot-staging/"
+        strip_components: 1
 
     # uses: fifsky/ssh-action@master
     #   with:
