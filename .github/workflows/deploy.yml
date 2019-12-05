@@ -22,11 +22,11 @@ jobs:
     - name: Zip Folder
       run: zip -r build.zip build/
     
-    - name: copy file via ssh key
+    - name: Copy files via ssh key
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST }}
-        KEY: ${{ secrets.PRIVATE_KEY }}
+        key: ${{ secrets.PRIVATE_KEY }}
         source: build.zip
         target: "/home/build/site/pharmOS/ocelot-staging/"
 
