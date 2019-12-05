@@ -23,7 +23,7 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          rm -rf /home/build/site/pharmOS/ocelot-staging/
+          rm -rf /home/build/site/pharmOS/ocelot-staging/*
           ls -a /home/build/site/pharmOS/ocelot-staging/
         host: ${{ secrets.HOST }}
         user: ubuntu
