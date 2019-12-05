@@ -1,6 +1,8 @@
 name: CI
 
 on: [push]
+  branches:    
+      - master  
 
 jobs:
   build:
@@ -15,3 +17,12 @@ jobs:
     - run: npm install
     - run: CI=true npm test
     - run: npm run build
+
+    uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd /home/build/site/pharmOS/ocelot-staging
+          ls -a
+        host: ${{ secrets.HOST }}
+        user: root
+        key: ${{ secrets.PRIVATE_KEY}}

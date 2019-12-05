@@ -74,12 +74,7 @@ const EventDetails = (props: any) => {
         {normalizedTask.address.postalCode} <br />
         {normalizedTask.recipients[0].phone} <br />
       </p>
-
-      {/* <p className="summary-text m-0">
-            <span>Total time to completion:</span>
-            {normalizedTask.times.totalTime}
-          </p> */}
-
+      
       <hr />
       <p className="summary-text m-0">
         <i className="pi pi-clock icon-small"></i> <span>Delivery Window </span>
