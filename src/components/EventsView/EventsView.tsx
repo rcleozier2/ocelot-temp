@@ -57,6 +57,18 @@ const EventsView = (props: any) => {
                     <i className="pi pi-clock icon-small"></i> Created:
                     {event.create_date}
                   </p>
+                  {event.name === "taskAssigned" && (
+                    <>
+                      <p>
+                        <b> Assigned By </b>
+                        {event.admin}
+                      </p>
+                      <p>
+                        <b> Assigned To </b>
+                        {event.worker}
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             );

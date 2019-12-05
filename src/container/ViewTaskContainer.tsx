@@ -41,23 +41,25 @@ class ViewTaskContainer extends React.Component<RouteComponentProps<any>> {
             <div className="summary-container col-6">
               <EventDetails normalizedTask={this.state.task} />
             </div>
-            <div className="summary-container col-5" style={{height: "450px"}}>
-              <GoogleMap location={this.state.task.location}/>
+            <div className=" col-5" style={{ height: "450px" }}>
+              <GoogleMap location={this.state.task.location} />
             </div>
             <div className="row">
-
-            <div className="summary-container col-12" style={{display: "none"}}>
-              {this.state.task.taskChain.map(function(
-                chain: any,
-                index: number
-              ) {
-                return (
-                  <span key={index}>
-                    {chain.name} -> {chain.timestampDistance} ->{" "}
-                  </span>
-                );
-              })}
-            </div>
+              <div
+                className="summary-container col-12"
+                style={{ display: "none" }}
+              >
+                {this.state.task.taskChain.map(function(
+                  chain: any,
+                  index: number
+                ) {
+                  return (
+                    <span key={index}>
+                      {chain.name} -> {chain.timestampDistance} ->{" "}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
         ) : (

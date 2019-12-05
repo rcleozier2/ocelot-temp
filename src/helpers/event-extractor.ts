@@ -19,10 +19,10 @@ interface NormailizedResponse {
   location: object;
   recipients: object;
   times: {
-    estimatedArrivalTime: null| number;
-    estimatedCompletionTime: null |number;
-    actualArrivalTime: null |number;
-    actualCompletionTime: null |number;
+    estimatedArrivalTime: null | number;
+    estimatedCompletionTime: null | number;
+    actualArrivalTime: null | number;
+    actualCompletionTime: null | number;
     arrivalTimeDifference: number;
     completionTimeDifference: number;
     totalTime: string;
@@ -31,6 +31,7 @@ interface NormailizedResponse {
     completeAfter: null | number;
     completeBefore: null | number;
   };
+  attachments: any;
   completed: boolean;
   failed: boolean;
   driver: string;
@@ -64,6 +65,7 @@ const eventExtractor = (tasks: any) => {
       arrivalStatus: "ontime",
       completedStatus: "ontime"
     },
+    attachments: [],
     completed: false,
     failed: false,
     taskChain: [],
@@ -134,6 +136,17 @@ const eventExtractor = (tasks: any) => {
         "doc.data.task.completionDetails.time",
         null
       );
+
+      let attachments = get(
+        task,
+        "doc.data.task.completionDetails.unavailableAttachments",
+        []
+      );
+
+      if (attachments.length > 0) {
+        normalizedResponse.attachments.push(attachments);
+      }
+
       normalizedResponse.completed = true;
     }
 

@@ -48,6 +48,12 @@ const EventDetails = (props: any) => {
             Failed
           </span>
         )}
+        {normalizedTask.completed === true && (
+          <span>
+            <i className="pi pi-check icon icon-green"></i>
+            Successful
+          </span>
+        )}
       </p>
 
       <p className="summary-text m-0">
@@ -136,6 +142,27 @@ const EventDetails = (props: any) => {
           <span> {normalizedTask.notes.driver}</span>
         </div>
       )}
+
+      {normalizedTask.attachments.length > 0 && (
+        <>
+          <hr />
+
+          <p className="summary-text m-0">
+            <i className="pi pi-file-o icon-small"></i>{" "}
+            <span>Attachments:</span>
+          </p>
+        </>
+      )}
+
+      {normalizedTask.attachments.map((attachment: any, index: number) => {
+        return (
+          <div className="attachments">
+            <img
+              src={`https://d15p8tr8p0vffz.cloudfront.net/${attachment[0].attachmentId}/800x.png`}
+            />
+          </div>
+        );
+      })}
     </>
   );
 };

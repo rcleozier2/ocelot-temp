@@ -11,7 +11,6 @@ const DriverStats = (props: any) => {
   const tableData: any = [];
 
   Object.keys(drivers).forEach((key: any) => {
-    console.log({drivers});
     drivers[key].name = cleanName(drivers[key].name);
     drivers[key].totalTime = formatDistance(
       new Date(drivers[key].endShift),
