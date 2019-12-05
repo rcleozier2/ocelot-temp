@@ -15,9 +15,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm install
-    - run: CI=true npm test
-    - run: npm run build
 
     - uses: fifsky/ssh-action@master
       with:
@@ -25,5 +22,5 @@ jobs:
           cd /home/build/site/pharmOS/ocelot-staging
           ls -a
         host: ${{ secrets.HOST }}
-        user: root
+        user: ubuntu
         key: ${{ secrets.PRIVATE_KEY}}
