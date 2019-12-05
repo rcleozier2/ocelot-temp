@@ -19,7 +19,7 @@ jobs:
     - run: CI=true npm test
     - run: npm run build
 
-    uses: fifsky/ssh-action@master
+    - uses: fifsky/ssh-action@master
       with:
         command: |
           cd /home/build/site/pharmOS/ocelot-staging
