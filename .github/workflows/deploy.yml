@@ -19,11 +19,14 @@ jobs:
     - run: CI=true npm test
     - run: npm run build
 
-    uses: fifsky/ssh-action@master
-      with:
-        command: |
-          cd /home/build/site/pharmOS/ocelot-staging
-          ls -a
-        host: ${{ secrets.HOST }}
-        user: root
-        key: ${{ secrets.PRIVATE_KEY}}
+    - name: Zip Folder
+      run: zip -r build.zip build/
+
+    # uses: fifsky/ssh-action@master
+    #   with:
+    #     command: |
+    #       cd /home/build/site/pharmOS/ocelot-staging
+    #       ls -a
+    #     host: ${{ secrets.HOST }}
+    #     user: ubuntu
+    #     key: ${{ secrets.PRIVATE_KEY}}
