@@ -22,7 +22,7 @@ jobs:
     - name: Clear old files
     uses: fifsky/ssh-action@master
       with:
-        command: |
+        command:
           rm -rf /home/build/site/pharmOS/ocelot-staging/*
         host: ${{ secrets.HOST }}
         user: ubuntu
