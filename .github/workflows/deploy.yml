@@ -29,7 +29,7 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.PRIVATE_KEY }}
       with:
-        source: build.tar.gz
+        source: build/
         target: "/home/build/site/pharmOS/ocelot-staging/"
 
     # uses: fifsky/ssh-action@master
