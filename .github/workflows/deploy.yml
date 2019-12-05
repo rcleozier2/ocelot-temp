@@ -29,7 +29,6 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.PRIVATE_KEY }}
       with:
-        rm: true
         source: build.tar.gz
         target: "/home/build/site/pharmOS/ocelot-staging/"
 
