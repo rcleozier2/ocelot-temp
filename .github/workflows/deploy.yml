@@ -19,16 +19,17 @@ jobs:
     - run: CI=true npm test
     - run: npm run build
 
-    - name: Clear old files
-    uses: fifsky/ssh-action@master
-      with:
-        command:
-          rm -rf /home/build/site/pharmOS/ocelot-staging/*
-        host: ${{ secrets.HOST }}
-        user: ubuntu
-        key: ${{ secrets.PRIVATE_KEY}}
+    - name: Remove old build files
+      uses: fifsky/ssh-action@master
+        with:
+          command: |
+            rm -rf /home/build/site/pharmOS/ocelot-staging/
+            ls -a /home/build/site/pharmOS/ocelot-staging/
+          host: ${{ secrets.HOST }}
+          user: ubuntu
+          key: ${{ secrets.PRIVATE_KEY}}
     
-    - name: Copy new build files via ssh
+    - name: Copy files via ssh key
       uses: appleboy/scp-action@master
       env:
         HOST: ${{ secrets.HOST }}
@@ -38,4 +39,5 @@ jobs:
         source: build/
         target: "/home/build/site/pharmOS/ocelot-staging/"
         strip_components: 1
+
 
