@@ -22,7 +22,7 @@
     "chart.js": "^2.9.2",
     "date-fns": "^2.7.0",
     "google-maps-react": "^2.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "node-sass": "^4.13.0",
     "primeicons": "^2.0.0",
     "primereact": "^3.3.2",
